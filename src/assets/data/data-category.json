@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "nombre": "Automotor",
+        "descripcion": "default"
+    },
+    {
+        "id": 2,
+        "nombre": "Maquinaria",
+        "descripcion": "default"
+    },
+    {
+        "id": 3,
+        "nombre": "Equipos Electronicos",
+        "descripcion": "default"
+    },
+    {
+        "id": 4,
+        "nombre": "Linea Blanca",
+        "descripcion": "default"
+    },
+    {
+        "id": 5,
+        "nombre": "Muebles",
+        "descripcion": "default"
+    },
+    {
+        "id": 6,
+        "nombre": "Materiales en deshuso chatarra",
+        "descripcion": "default"
+    },
+    {
+        "id": 7,
+        "nombre": "Repuestos y partes",
+        "descripcion": "default"
+    },
+    {
+        "id": 8,
+        "nombre": "Otros",
+        "descripcion": "default"
+    }
+]

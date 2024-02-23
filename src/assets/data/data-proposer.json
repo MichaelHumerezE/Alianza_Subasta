@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "nombre": "proposer 1",
+        "apellido": "apellido 1",
+        "puja": 12005,
+        "fecha_puja": "2024-02-12 13:13:13"
+    },
+    {
+        "id": 2,
+        "nombre": "proposer 2",
+        "apellido": "apellido 2",
+        "puja": 11005,
+        "fecha_puja": "2024-02-20 13:13:13"
+    },
+    {
+        "id": 3,
+        "nombre": "proposer 3",
+        "apellido": "apellido 3",
+        "puja": 10005,
+        "fecha_puja": "2024-02-13 13:13:13"
+    }
+]

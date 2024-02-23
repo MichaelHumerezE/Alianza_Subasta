@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "nombre_comercial": "nombre comercial 2",
+    "nombre_completo": "nomber completo 1",
+    "observacion": "observacion",
+    "precio_base": 10000,
+    "puja_actual": null,
+    "images": [
+      "https://img.freepik.com/fotos-premium/cadaver-coche-estrellado-seguro-automovil_99974-652.jpg",
+      "https://siempreauto.com/wp-content/uploads/sites/9/2021/10/Auto-chocado.jpg",
+      "https://c8.alamy.com/compes/kr4jfd/diciembre-de-2017-el-arbol-1-0-coches-coche-viejo-verde-danado-cuando-se-topo-con-un-arbol-kr4jfd.jpg"
+    ],
+    "fecha_inicio": "2024-02-20 00:00:00",
+    "fecha_fin": "2024-02-25 00:00:00",
+    "categoria": "Automotor",
+    "estado": 3,
+    "incremento_puja": 100
+  },
+  {
+    "id": 2,
+    "nombre_comercial": "nombre comercial 2",
+    "nombre_completo": "nomber completo 2",
+    "observacion": "observacion",
+    "precio_base": 20000,
+    "puja_actual": 21000,
+    "images": [
+      "https://img.freepik.com/fotos-premium/cadaver-coche-estrellado-seguro-automovil_99974-652.jpg",
+      "https://siempreauto.com/wp-content/uploads/sites/9/2021/10/Auto-chocado.jpg",
+      "https://c8.alamy.com/compes/kr4jfd/diciembre-de-2017-el-arbol-1-0-coches-coche-viejo-verde-danado-cuando-se-topo-con-un-arbol-kr4jfd.jpg"
+    ],
+    "fecha_inicio": "2024-02-20 00:00:00",
+    "fecha_fin": "2024-02-22 00:00:00",
+    "categoria": "Maquinaria",
+    "estado": 4,
+    "incremento_puja": 100
+  },
+  {
+    "id": 3,
+    "nombre_comercial": "nombre comercial 3",
+    "nombre_completo": "nomber completo 3",
+    "observacion": "observacion",
+    "precio_base": 1000,
+    "puja_actual": 1100,
+    "images": [
+      "https://img.freepik.com/fotos-premium/cadaver-coche-estrellado-seguro-automovil_99974-652.jpg",
+      "https://siempreauto.com/wp-content/uploads/sites/9/2021/10/Auto-chocado.jpg",
+      "https://c8.alamy.com/compes/kr4jfd/diciembre-de-2017-el-arbol-1-0-coches-coche-viejo-verde-danado-cuando-se-topo-con-un-arbol-kr4jfd.jpg"
+    ],
+    "fecha_inicio": "2024-01-31 23:59:59",
+    "fecha_fin": "2024-01-31 23:59:59",
+    "categoria": "Equipos Electronicos",
+    "estado": 6,
+    "incremento_puja": 100
+  },
+  {
+    "id": 4,
+    "nombre_comercial": "nombre comercial 4",
+    "nombre_completo": "nomber completo 4",
+    "observacion": "observacion",
+    "precio_base": 30000,
+    "puja_actual": 31000,
+    "images": [
+      "https://img.freepik.com/fotos-premium/cadaver-coche-estrellado-seguro-automovil_99974-652.jpg",
+      "https://siempreauto.com/wp-content/uploads/sites/9/2021/10/Auto-chocado.jpg",
+      "https://c8.alamy.com/compes/kr4jfd/diciembre-de-2017-el-arbol-1-0-coches-coche-viejo-verde-danado-cuando-se-topo-con-un-arbol-kr4jfd.jpg"
+    ],
+    "fecha_inicio": "2024-01-31 23:59:59",
+    "fecha_fin": "2024-01-31 23:59:59",
+    "categoria": "Linea Blanca",
+    "estado": 3,
+    "incremento_puja": 100
+  },
+  {
+    "id": 5,
+    "nombre_comercial": "nombre comercial 5",
+    "nombre_completo": "nomber completo 5",
+    "observacion": "observacion",
+    "precio_base": 2000,
+    "puja_actual": 2100,
+    "images": [
+      "https://img.freepik.com/fotos-premium/cadaver-coche-estrellado-seguro-automovil_99974-652.jpg",
+      "https://siempreauto.com/wp-content/uploads/sites/9/2021/10/Auto-chocado.jpg",
+      "https://c8.alamy.com/compes/kr4jfd/diciembre-de-2017-el-arbol-1-0-coches-coche-viejo-verde-danado-cuando-se-topo-con-un-arbol-kr4jfd.jpg"
+    ],
+    "fecha_inicio": "2024-01-31 23:59:59",
+    "fecha_fin": "2024-01-31 23:59:59",
+    "categoria": "Muebles",
+    "estado": 4,
+    "incremento_puja": 100
+  }
+]

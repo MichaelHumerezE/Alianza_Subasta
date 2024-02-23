@@ -1,0 +1,18 @@
+[
+    {
+        "id": 3,
+        "estado": "Iniciado"
+    },
+    {
+        "id": 4,
+        "estado": "Precio Ascendente"
+    },
+    {
+        "id": 5,
+        "estado": "Finalizado"
+    },
+    {
+        "id": 6,
+        "estado": "Cancelado"
+    }
+]

@@ -1,0 +1,123 @@
+<!--Login wrap-->
+<div class="register_wrap section_padding_b">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-5 col-lg-7 col-md-9">
+        <div class="register_form padding_default shadow_sm">
+          <h4 class="title_2">Login</h4>
+          <p class="mb-4 text_md">Login if you a a returing customer</p>
+          <form [formGroup]="loginForm">
+            <div class="row">
+              <div class="col-12">
+                <div class="single_billing_inp">
+                  <label>Email Address <span>*</span></label>
+                  <input
+                    type="email"
+                    placeholder="example@mail.com"
+                    formControlName="mail"
+                  />
+                  <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+                  <div
+                    *ngIf="
+                      loginForm.get('mail')?.invalid &&
+                      (loginForm.get('mail')?.dirty ||
+                        loginForm.get('mail')?.touched)
+                    "
+                  >
+                    <div
+                      *ngIf="loginForm.get('mail')?.errors?.['required']"
+                      class="error text-danger"
+                    >
+                      Ingrese su dirección de Correo Electrónico
+                    </div>
+                    <div
+                      *ngIf="loginForm.get('mail')?.errors?.['email']"
+                      class="error text-danger"
+                    >
+                      El Correo Electrónico no es válido
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="single_billing_inp">
+                  <label>Password <span>*</span></label>
+                  <input
+                    type="password"
+                    placeholder="type password"
+                    formControlName="password"
+                  />
+                  <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+                  <div
+                    *ngIf="
+                      loginForm.get('password')?.invalid &&
+                      (loginForm.get('password')?.dirty ||
+                        loginForm.get('password')?.touched)
+                    "
+                  >
+                    <div
+                      *ngIf="loginForm.get('password')?.errors?.['required']"
+                      class="error text-danger"
+                    >
+                      Ingrese su Contraseña
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="col-12 mt-2 d-flex justify-content-between align-items-center"
+              >
+                <div class="custom_check check_2 d-flex align-items-center">
+                  <input
+                    type="checkbox"
+                    class="check_inp"
+                    hidden
+                    id="save-default"
+                  />
+                  <label for="save-default">Remember Me</label>
+                </div>
+
+                <a href="forgot-password.html" class="text-color"
+                  >Forgot Password?</a
+                >
+              </div>
+              <div class="col-12 mt-3">
+                <button
+                  (click)="login()"
+                  type="submit"
+                  class="default_btn xs_btn rounded px-4 d-block w-100"
+                  [disabled]="!loginForm.valid"
+                  [ngClass]="{'disabled-button': !loginForm.valid}"
+                >
+                  Login
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <div class="dif_regway my-3">
+            <span class="txt">Or login in with</span>
+          </div>
+
+          <div class="d-flex">
+            <button
+              class="default_btn xs_btn rounded px-4 d-block w-50 text-capitalize bg-facebook"
+            >
+              <i class="fab fa-facebook-f me-2"></i> Facebook
+            </button>
+            <button
+              class="default_btn xs_btn rounded px-4 d-block w-50 ms-3 text-capitalize bg-google"
+            >
+              <i class="fab fa-google me-2"></i> Google
+            </button>
+          </div>
+
+          <p class="text-center mt-3 mb-0">
+            Don't have an account.?
+            <a href="register.html" class="text-color">Register Now</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

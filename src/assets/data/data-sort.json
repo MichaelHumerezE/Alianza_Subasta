@@ -1,0 +1,18 @@
+[
+    {
+        "id": 1,
+        "nombre": "Precio Descendente"
+    },
+    {
+        "id": 2,
+        "nombre": "Precio Ascendente"
+    },
+    {
+        "id": 3,
+        "nombre": "A-Z"
+    },
+    {
+        "id": 4,
+        "nombre": "Z-A"
+    }
+]
