@@ -4,44 +4,148 @@
         <div class="row justify-content-center">
             <div class="col-xl-5 col-lg-7 col-md-9">
                 <div class="register_form padding_default shadow_sm">
-                    <h4 class="title_2">Create an account</h4>
-                    <p class="mb-4 text_md">Register here if you are a new customer.</p>
-                    <form action="">
+                    <h4 class="title_2">Crearse una Cuenta</h4>
+                    <p class="mb-4 text_md">Regístrese aquí si es un nuevo proponente.</p>
+                    <form [formGroup]="registerForm">
                         <div class="row">
                             <div class="col-12">
                                 <div class="single_billing_inp">
-                                    <label>Full Name <span>*</span></label>
-                                    <input type="text" placeholder="Jone Doe">
+                                    <label>Nombre <span>*</span></label>
+                                    <input type="text" placeholder="Ingrese su Nombre" formControlName="name">
+                                    <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+                                    <div *ngIf="
+          registerForm.get('name')?.invalid &&
+          (registerForm.get('name')?.dirty ||
+            registerForm.get('name')?.touched)
+        ">
+                                        <div *ngIf="registerForm.get('name')?.errors?.['required']"
+                                            class="error text-danger">
+                                            Ingrese su Nombre
+                                        </div>
+                                        <div *ngIf="registerForm.get('name')?.errors?.['minlength']"
+                                            class="error text-danger">
+                                            El nombre debe tener al menos 3 caracteres
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Apellido <span>*</span></label>
+                                    <input type="text" placeholder="Ingrese su Apellido" formControlName="surname">
+                                    <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+                                    <div *ngIf="
+          registerForm.get('surname')?.invalid &&
+          (registerForm.get('surname')?.dirty ||
+            registerForm.get('surname')?.touched)
+        ">
+                                        <div *ngIf="registerForm.get('surname')?.errors?.['required']"
+                                            class="error text-danger">
+                                            Ingrese su Apellido
+                                        </div>
+                                        <div *ngIf="registerForm.get('surname')?.errors?.['minlength']"
+                                            class="error text-danger">
+                                            El Apellido debe tener al menos 4 caractéres
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Carnet de Identidad <span>*</span></label>
+                                    <input type="text" placeholder="Ingrese su CI" formControlName="ci">
+                                    <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+                                    <div *ngIf="
+          registerForm.get('ci')?.invalid &&
+          (registerForm.get('ci')?.dirty || registerForm.get('ci')?.touched)
+        ">
+                                        <div *ngIf="registerForm.get('ci')?.errors?.['required']"
+                                            class="error text-danger">
+                                            Ingrese su número de carnet
+                                        </div>
+                                        <div *ngIf="registerForm.get('ci')?.errors?.['minlength']"
+                                            class="error text-danger">
+                                            El Número de Carnet debe tener al menos 6 dígitos
+                                        </div>
+                                        <div *ngIf="registerForm.get('ci')?.errors?.['notANumber']"
+                                            class="error text-danger">
+                                            Este campo solo permite números
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Teléfono <span>*</span></label>
+                                    <input type="text" placeholder="Ingrese su Teléfono" formControlName="phone">
+                                    <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+                                    <div *ngIf="
+          registerForm.get('phone')?.invalid &&
+          (registerForm.get('phone')?.dirty ||
+            registerForm.get('phone')?.touched)
+        ">
+                                        <div *ngIf="registerForm.get('phone')?.errors?.['required']"
+                                            class="error text-danger">
+                                            Ingrese su Número de Telefono
+                                        </div>
+                                        <div *ngIf="registerForm.get('phone')?.errors?.['minlength']"
+                                            class="error text-danger">
+                                            El Número de Telefono debe tener al menos 6 dígitos
+                                        </div>
+                                        <div *ngIf="registerForm.get('phone')?.errors?.['notANumber']"
+                                            class="error text-danger">
+                                            Este campo solo permite números
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="single_billing_inp">
                                     <label>Email Address <span>*</span></label>
-                                    <input type="email" placeholder="example@mail.com">
+                                    <input type="email" placeholder="Ingrese su Email" formControlName="email">
+                                    <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+                                    <div *ngIf="
+          registerForm.get('email')?.invalid &&
+          (registerForm.get('email')?.dirty ||
+            registerForm.get('email')?.touched)
+        ">
+                                        <div *ngIf="registerForm.get('email')?.errors?.['required']"
+                                            class="error text-danger">
+                                            Ingrese su dirección de Correo Electrónico
+                                        </div>
+                                        <div *ngIf="registerForm.get('email')?.errors?.['email']"
+                                            class="error text-danger">
+                                            El Correo Electrónico no es válido
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12">
                                 <div class="single_billing_inp">
-                                    <label>Password <span>*</span></label>
-                                    <input type="password" placeholder="type password">
-                                </div>
-                            </div>
-                            <div class="col-12">
-                                <div class="single_billing_inp">
-                                    <label>Confirm Password <span>*</span></label>
-                                    <input type="password" placeholder="confirm your password">
-                                </div>
-                            </div>
-                            <div class="col-12 mt-2">
-                                <div class="custom_check check_2 d-flex align-items-center">
-                                    <input type="checkbox" class="check_inp" hidden id="save-default">
-                                    <label for="save-default">I have read and agree to the <a href="terms-condition.html"
-                                            class="text-color">terms & conditions</a> </label>
+                                    <label>Contraseña <span>*</span></label>
+                                    <input type="password" placeholder="Ingrese su Contraseña"
+                                        formControlName="password">
+                                    <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+                                    <div *ngIf="
+          registerForm.get('password')?.invalid &&
+          (registerForm.get('password')?.dirty ||
+            registerForm.get('password')?.touched)
+        ">
+                                        <div *ngIf="registerForm.get('password')?.errors?.['required']"
+                                            class="error text-danger">
+                                            Ingrese su Contraseña
+                                        </div>
+                                        <div *ngIf="registerForm.get('password')?.errors?.['minlength']"
+                                            class="error text-danger">
+                                            La Contraseña debe tener al menos 6 caracteres
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-12 mt-3">
-                                <button type="submit" class="default_btn xs_btn rounded px-4 d-block w-100">create
-                                    account</button>
+                                <button type="submit" class="default_btn xs_btn rounded px-4 d-block w-100"
+                                    [disabled]="!registerForm.valid"
+                                    [ngClass]="{'disabled-button': !registerForm.valid}">Registrarse</button>
                             </div>
 
                         </div>
@@ -60,7 +164,8 @@
                         </button>
                     </div>
 
-                    <p class="text-center mt-3 mb-0">Already have an account.? <a href="login.html" class="text-color">Login Now</a></p>
+                    <p class="text-center mt-3 mb-0">¿Ya tienes una cuenta? <a routerLink="/login"
+                            class="text-color">Iniciar Sesión Ahora</a></p>
 
                 </div>
             </div>

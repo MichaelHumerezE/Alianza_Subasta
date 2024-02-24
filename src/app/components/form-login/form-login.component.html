@@ -4,8 +4,8 @@
     <div class="row justify-content-center">
       <div class="col-xl-5 col-lg-7 col-md-9">
         <div class="register_form padding_default shadow_sm">
-          <h4 class="title_2">Login</h4>
-          <p class="mb-4 text_md">Login if you a a returing customer</p>
+          <h4 class="title_2">Iniciar Sesión</h4>
+          <p class="mb-4 text_md">Inicia sesión si ya tienes una cuenta</p>
           <form [formGroup]="loginForm">
             <div class="row">
               <div class="col-12">
@@ -13,7 +13,7 @@
                   <label>Email Address <span>*</span></label>
                   <input
                     type="email"
-                    placeholder="example@mail.com"
+                    placeholder="Ingrese su Email"
                     formControlName="mail"
                   />
                   <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
@@ -41,10 +41,10 @@
               </div>
               <div class="col-12">
                 <div class="single_billing_inp">
-                  <label>Password <span>*</span></label>
+                  <label>Contraseña <span>*</span></label>
                   <input
                     type="password"
-                    placeholder="type password"
+                    placeholder="Ingrese su Contraseña"
                     formControlName="password"
                   />
                   <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
@@ -74,11 +74,10 @@
                     hidden
                     id="save-default"
                   />
-                  <label for="save-default">Remember Me</label>
                 </div>
 
                 <a href="forgot-password.html" class="text-color"
-                  >Forgot Password?</a
+                  >Olvido su Contraseña?</a
                 >
               </div>
               <div class="col-12 mt-3">
@@ -89,7 +88,7 @@
                   [disabled]="!loginForm.valid"
                   [ngClass]="{'disabled-button': !loginForm.valid}"
                 >
-                  Login
+                  Iniciar Sesión
                 </button>
               </div>
             </div>
@@ -113,8 +112,8 @@
           </div>
 
           <p class="text-center mt-3 mb-0">
-            Don't have an account.?
-            <a href="register.html" class="text-color">Register Now</a>
+            ¿No tienes una cuenta?
+            <a routerLink="/register" class="text-color">Registrarse Ahora</a>
           </p>
         </div>
       </div>

@@ -9,13 +9,13 @@ import {
 } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
-import { Message } from '../../interfaces/message';
-import { Router } from '@angular/router';
+import { Message } from '../../interfaces/message'; 
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-form-login',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule],
+  imports: [FormsModule, CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './form-login.component.html',
   styleUrl: './form-login.component.css',
 })
