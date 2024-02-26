@@ -14,16 +14,16 @@
       <div class="col-lg-3 col-sm-6">
         <div class="single_new_arrive">
           <div class="sna_img">
-            <img loading="lazy" class="prd_img" src="{{product.images[0]}}" alt="product" />
+            <img loading="lazy" class="prd_img" src="{{ url_base + product.images[0]}}" alt="product" />
             <span class="tag">{{product.category}}</span>
             <div class="prodcut_hovcont">
-              <a routerLink="/auction/detail" class="icon open_quickview" tabindex="0">
+              <a routerLink="/auction/{{product.id}}/detail" class="icon open_quickview" tabindex="0">
                 <i class="icon-search-left"></i>
               </a>
             </div>
           </div>
           <div class="sna_content">
-            <a href="{{product.images[0]}}">
+            <a routerLink="/auction/{{product.id}}/detail">
               <h4>{{product.commercial_name}}</h4>
             </a>
             <div class="ratprice">
@@ -47,7 +47,7 @@
               </div>
             </div>
             <div class="product_adcart">
-              <button class="default_btn" routerLink="/auction/detail">Enviar Puja</button>
+              <button class="default_btn" routerLink="/auction/{{product.id}}/detail">Enviar Puja</button>
             </div>
           </div>
         </div>

@@ -6,14 +6,14 @@
                 <div class="product_view_slider">
                     @for (image of product?.images; track $index) {
                     <div class="single_viewslider">
-                        <img loading="lazy" src="{{image}}" alt="product">
+                        <img loading="lazy" src="{{url_base + image}}" alt="product">
                     </div>
                     }
                 </div>
                 <div class="product_viewslid_nav">
                     @for (image of product?.images; track $index) {
                     <div class="single_viewslid_nav">
-                        <img loading="lazy" src="{{image}}" alt="product">
+                        <img loading="lazy" src="{{url_base + image}}" alt="product">
                     </div>
                     }
                 </div>

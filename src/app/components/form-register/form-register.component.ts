@@ -6,6 +6,7 @@ import { ImgDropZoneComponent } from '../img-drop-zone/img-drop-zone.component';
 import { SweetAlert2Service } from '../../services/sweet-alert-2.service';
 import { Message } from '../../interfaces/message';
 import { AuthService } from '../../services/auth.service';
+import { Response } from '../../interfaces/response';
 
 @Component({
   selector: 'app-form-register',
@@ -17,23 +18,23 @@ import { AuthService } from '../../services/auth.service';
 export class FormRegisterComponent {
 
   registerForm: FormGroup = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    surname: new FormControl('', [
+    name: new FormControl('default', [Validators.required, Validators.minLength(3)]),
+    surname: new FormControl('default', [
       Validators.required,
       Validators.minLength(3),
     ]),
-    ci: new FormControl('', [
+    ci: new FormControl('11111111', [
       Validators.required,
       Validators.minLength(6),
       this.validateNumber,
     ]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    phone: new FormControl('', [
+    email: new FormControl('default@gmail.com', [Validators.required, Validators.email]),
+    phone: new FormControl('111111111', [
       Validators.required,
       Validators.minLength(6),
       this.validateNumber,
     ]),
-    password: new FormControl('', [
+    password: new FormControl('123456', [
       Validators.required,
       Validators.minLength(6),
     ]),
@@ -65,7 +66,7 @@ export class FormRegisterComponent {
     if (this.files.length == 2) {
       const formData = this.loadFormData();
       this.authService.register(formData).subscribe({
-        next: (response) => {
+        next: (response: Response) => {
           console.log('Respuesta de la API-REGISTER:', response);
           this.message.title = 'Enviado';
           this.message.text =
@@ -82,7 +83,7 @@ export class FormRegisterComponent {
           this.message.icon = 'error';
           this.alert.viewMessage(this.message);
         },
-      });;
+      });
     } else {
       this.message.title = "¡Debe Subir 2 Imágenes!";
       this.message.text = "Solo se permite cargar un máximo de 2 imagenes, por favor seleccione 2 imágenes";
@@ -97,7 +98,7 @@ export class FormRegisterComponent {
     formData.append('name', this.registerForm.get('name')?.value);
     formData.append('surname', this.registerForm.get('surname')?.value);
     formData.append('ci', this.registerForm.get('ci')?.value);
-    formData.append('mail', this.registerForm.get('mail')?.value);
+    formData.append('mail', this.registerForm.get('email')?.value);
     formData.append('phone', this.registerForm.get('phone')?.value);
     formData.append('password', this.registerForm.get('password')?.value);
     // Iterar sobre los controles del FormArray y agregar cada archivo individualmente al FormData

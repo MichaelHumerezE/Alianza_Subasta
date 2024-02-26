@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Product } from '../../interfaces/product';
 import { ProductService } from '../../services/product.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AUCTION_STATE } from '../../config/config';
+import { AUCTION_STATE, URL_BACKEND_IMAGES } from '../../config/config';
 import { Attribute } from '../../interfaces/attribute';
 import { AttributeService } from '../../services/attribute.service';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -34,7 +34,7 @@ export class DetailProductComponent {
   };
 
   states = AUCTION_STATE;
-
+  url_base = URL_BACKEND_IMAGES + 'article/';
   minimum_bid?: number;
 
   constructor(private productService: ProductService, private route: ActivatedRoute,
@@ -49,10 +49,10 @@ export class DetailProductComponent {
 
   loadProduct() {
     const formData = new FormData();
-    formData.append('id_auction', this.id_auction.toString());
+    formData.append('id', this.id_auction.toString());
     this.productService.getProductById(formData).subscribe({
       next: (productData) => {
-        console.log(productData);
+        console.log('Respuesta de la API - GetProductById: ', productData);
         this.product = productData;
         this.minimum_bid = this.product.current_bid + this.product.minimum_increase;
       },
@@ -64,10 +64,10 @@ export class DetailProductComponent {
 
   loadAttributes() {
     const formData = new FormData();
-    formData.append('id_auction', this.id_auction.toString());
+    formData.append('id', this.id_auction.toString());
     this.attributeService.getAttributesByIdProduct(formData).subscribe({
       next: (attributesData) => {
-        console.log(attributesData);
+        console.log('Respuesta de la API - GetAttributesByIdProduct: ', attributesData);
         this.attributes = attributesData;
       },
       error: (errorData) => {

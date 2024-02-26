@@ -16,6 +16,6 @@ export class DetailAuctionComponent {
   constructor() {
     setTimeout(() => {
       initPage($);
-    }, 50);
+    }, 1000);
   }
 }

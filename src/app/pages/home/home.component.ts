@@ -25,6 +25,6 @@ export class HomeComponent {
   constructor() {
     setTimeout(() => {
       initPage($);
-    }, 50);
+    }, 1000);
   }
 }

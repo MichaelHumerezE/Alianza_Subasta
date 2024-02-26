@@ -18,7 +18,7 @@ export class LoginComponent {
   constructor() {
     setTimeout(() => {
       initPage($);
-    }, 50);
+    }, 1000);
   }
 
 }

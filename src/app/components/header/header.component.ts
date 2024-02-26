@@ -3,6 +3,8 @@ import { RouterLink } from '@angular/router';
 import { AUCTION_STATE } from '../../config/config';
 import { Category } from '../../interfaces/category';
 import { CategoryService } from '../../services/category.service';
+import { Proposer } from '../../interfaces/proposer';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -17,22 +19,30 @@ export class HeaderComponent {
 
   categories: Category[] = [];
 
-  constructor(private categoryService: CategoryService) { }
+  proposer: Proposer | null = null;
+
+  constructor(private categoryService: CategoryService, private authService: AuthService) { }
 
   ngOnInit() {
+    this.proposer = this.authService.proposer;
     this.loadCategories();
   }
 
   loadCategories() {
     this.categoryService.getCategories().subscribe({
       next: (categoriesData) => {
-        console.log("API get Categories: " + categoriesData);
+        console.log('Respuesta de la API - getCategories: ', categoriesData);
         this.categories = categoriesData;
       },
       error: (errorData) => {
         console.error("ERROR API get Categories: " + errorData);
       }
     });
+  }
+
+  logout(){
+    this.authService.logout();
+    this.proposer = null;
   }
 
 }

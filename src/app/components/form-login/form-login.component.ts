@@ -7,9 +7,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import Swal from 'sweetalert2';
-import { Message } from '../../interfaces/message'; 
+import { CommonModule, Location } from '@angular/common';
+import { Message } from '../../interfaces/message';
 import { Router, RouterLink } from '@angular/router';
 import { SweetAlert2Service } from '../../services/sweet-alert-2.service';
 
@@ -22,8 +21,11 @@ import { SweetAlert2Service } from '../../services/sweet-alert-2.service';
 })
 export class FormLoginComponent {
   loginForm: FormGroup = new FormGroup({
-    mail: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    mail: new FormControl('default@gmail.com', [
+      Validators.required,
+      Validators.email,
+    ]),
+    password: new FormControl('123456', [Validators.required]),
   });
 
   message: Message = {
@@ -32,17 +34,17 @@ export class FormLoginComponent {
     icon: 'info',
   };
 
-  constructor(private authService: AuthService, private router: Router, private alert: SweetAlert2Service) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private alert: SweetAlert2Service,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {}
 
   login() {
-    const formData = new FormData();
-
-    // Agregar datos al FormData
-    formData.append('mail', this.loginForm.get('mail')?.value);
-    formData.append('password', this.loginForm.get('password')?.value);
-
+    const formData = this.loadFormData();
     this.authService.login(formData).subscribe({
       next: (response: any) => {
         console.log('Respuesta de la API - LOGIN: ', response);
@@ -52,7 +54,9 @@ export class FormLoginComponent {
           this.message.text = 'Datos Correctos.';
           this.message.icon = 'success';
           this.alert.viewMessage(this.message);
-          this.router.navigate(['/']);
+          this.router.navigateByUrl('/').then(() => {
+            window.location.reload();
+          });
         } else {
           this.message.title = 'Error!';
           this.message.text = 'Credenciales incorrectas, intentelo de nuevo.';
@@ -69,5 +73,12 @@ export class FormLoginComponent {
         this.alert.viewMessage(this.message);
       },
     });
+  }
+
+  loadFormData(): FormData {
+    const formData = new FormData();
+    formData.append('mail', this.loginForm.get('mail')?.value);
+    formData.append('password', this.loginForm.get('password')?.value);
+    return formData;
   }
 }

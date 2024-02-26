@@ -81,8 +81,8 @@
                         <div class="card-body">
                             <h6 class="d-flex align-items-center mb-3"><i
                                     class="material-icons text-info mr-2"></i>Actuales Fotos del CI</h6>
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" width="150">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" width="150">
+                            <img src="" alt="Admin" width="150">
+                            <img src="" alt="Admin" width="150">
 
                         </div>
                     </div>
@@ -209,7 +209,7 @@
                                 </div>
                                 <div class="col-sm-9 text-secondary">
                                     <input type="email" class="form-control border-0 outline-none"
-                                        placeholder="Ingrese su Email" formControlName="mail">
+                                        placeholder="Ingrese su Email" formControlName="mail" >
                                     <hr class="mt-0">
                                     <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
                                     <div *ngIf="
@@ -276,7 +276,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-12">
-                                    <button class="default_btn xs_btn rounded px-4 d-block w-100">
+                                    <button class="default_btn xs_btn rounded px-4 d-block w-100" (click)="updateProposer()">
                                         Editar
                                     </button>
                                 </div>

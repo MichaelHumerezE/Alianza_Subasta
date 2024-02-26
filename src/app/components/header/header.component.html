@@ -4,16 +4,24 @@
     <div class="d-flex align-items-center">
       <div class="logo">
         <a routerLink="/">
-          <img loading="lazy" src="assets/images/alianza/logo_2.svg" alt="logo">
+          <img
+            loading="lazy"
+            src="assets/images/alianza/logo_2.svg"
+            alt="logo"
+          />
         </a>
       </div>
 
       <ul class="nav_bar flex-grow-1">
         <li class="withsubs">
-          <a routerLink="/">Inicio <span><i class="las la-angle-down"></i></span></a>
+          <a routerLink="/"
+            >Inicio <span><i class="las la-angle-down"></i></span
+          ></a>
         </li>
         <li class="withsubs">
-          <a routerLink="/auction">Subastas <span><i class="las la-angle-down"></i></span></a>
+          <a routerLink="/auction"
+            >Subastas <span><i class="las la-angle-down"></i></span
+          ></a>
           <ul class="subnav">
             <li><a routerLink="/">Iniciado </a></li>
             <li><a routerLink="/">Finalizado </a></li>
@@ -21,15 +29,21 @@
           </ul>
         </li>
         <li class="withsubs">
-          <a routerLink="/auction">Categorias <span><i class="las la-angle-down"></i></span></a>
+          <a routerLink="/auction"
+            >Categorias <span><i class="las la-angle-down"></i></span
+          ></a>
           <ul class="subnav">
             @for (category of categories; track $index) {
-              <li><a routerLink="/">{{category.name}} </a></li>
+            <li>
+              <a routerLink="/">{{ category.name }} </a>
+            </li>
             }
           </ul>
         </li>
         <li class="withsubs">
-          <a href="shop-list.html">Shop <span><i class="las la-angle-down"></i></span></a>
+          <a href="shop-list.html"
+            >Shop <span><i class="las la-angle-down"></i></span
+          ></a>
           <ul class="subnav">
             <li><a href="shop-list.html">List view </a></li>
             <li><a href="shop-grid.html">Grid view</a></li>
@@ -40,7 +54,9 @@
           </ul>
         </li>
         <li class="withsubs">
-          <a href="shop-list.html">Pages <span><i class="las la-angle-down"></i></span></a>
+          <a href="shop-list.html"
+            >Pages <span><i class="las la-angle-down"></i></span
+          ></a>
           <div class="subnav py-3 px-2 d-flex gx-4">
             <div class="single_subnav">
               <h5 class="text_lg ps-3 mb-2">Others pages</h5>
@@ -76,8 +92,13 @@
         <li><a href="contact-us.html">contact</a></li>
         <li class="tophead_items ms-auto">
           <div class="me-3">
-            <a class="text-semibold me-0" routerLink="/login">Iniciar Sesion</a><span class="text_xs">/</span><a
-              class="text-semibold" routerLink="/register">registrarse</a>
+            @if (!proposer) {
+            <a class="text-semibold me-0" routerLink="/login">Iniciar Sesion</a
+            ><span class="text_xs">/</span
+            ><a class="text-semibold" routerLink="/register">registrarse</a>
+            }@else {
+              <a class="text-semibold" routerLink="/profile">Bienvenido {{proposer.email}}</a>
+            }
           </div>
           <!--
           <div>
@@ -97,7 +118,6 @@
           -->
         </li>
       </ul>
-
     </div>
   </div>
 </header>
@@ -107,10 +127,18 @@
   <div class="container">
     <div class="d-flex align-items-center justify-content-between">
       <a routerLink="/" class="mobile_logo d-block d-lg-none">
-        <img loading="lazy" src="assets/images/alianza/logo-white.png" alt="logo" class="mt-1">
+        <img
+          loading="lazy"
+          src="assets/images/alianza/logo-white.png"
+          alt="logo"
+          class="mt-1"
+        />
       </a>
       <div class="all_category d-none d-lg-block">
-        <div class="bars text-white d-flex align-items-center justify-content-center">
+        <!--
+        <div
+          class="bars text-white d-flex align-items-center justify-content-center"
+        >
           <span class="icon">
             <i class="las la-bars"></i>
           </span>
@@ -122,7 +150,6 @@
           </h5>
           <a href="#" class="singlecats">
             <span class="img_wrp">
-
               <i class="las la-shoe-prints"></i>
             </span>
             <span class="txt">Shoes</span>
@@ -206,46 +233,102 @@
               <div class="single_mega_menu brnd">
                 <div class="mega_brands">
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-1.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-1.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-2.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-2.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-3.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-3.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-4.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-4.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-5.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-5.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-6.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-6.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-7.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-7.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-8.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-8.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-9.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-9.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-10.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-10.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-11.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-11.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-12.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-12.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-13.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-13.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-14.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-14.png"
+                      alt="brand"
+                    />
                   </a>
                 </div>
               </div>
@@ -353,46 +436,102 @@
               <div class="single_mega_menu brnd">
                 <div class="mega_brands">
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-1.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-1.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-2.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-2.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-3.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-3.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-4.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-4.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-5.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-5.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-6.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-6.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-7.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-7.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-8.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-8.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-9.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-9.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-10.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-10.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-11.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-11.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-12.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-12.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-13.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-13.png"
+                      alt="brand"
+                    />
                   </a>
                   <a href="#" class="mega_brnd_img">
-                    <img loading="lazy" src="assets/images/brand-14.png" alt="brand">
+                    <img
+                      loading="lazy"
+                      src="assets/images/brand-14.png"
+                      alt="brand"
+                    />
                   </a>
                 </div>
               </div>
@@ -405,9 +544,9 @@
             <span class="txt">Mobile</span>
           </a>
         </div>
+        -->
       </div>
       <div class="search_wrap d-none d-lg-block">
-
         <div class="search d-flex">
           <div class="search_category">
             <select class="nice_select">
@@ -416,12 +555,18 @@
             </select>
           </div>
           <div class="search_input">
-            <input type="text" placeholder="Search product..." id="show_suggest">
+            <input
+              type="text"
+              placeholder="Search product..."
+              id="show_suggest"
+            />
           </div>
           <div class="search_subimt">
             <button>
               <span class="d-none d-sm-inline-block">Search</span>
-              <span class="d-sm-none d-inline-block"><i class="icon-search-left"></i></span>
+              <span class="d-sm-none d-inline-block"
+                ><i class="icon-search-left"></i
+              ></span>
             </button>
           </div>
         </div>
@@ -429,7 +574,11 @@
           <div class="search_result_product">
             <a href="product-view.html" class="single_sresult_product">
               <div class="sresult_img">
-                <img loading="lazy" src="assets/images/laptop-2.png" alt="product">
+                <img
+                  loading="lazy"
+                  src="assets/images/laptop-2.png"
+                  alt="product"
+                />
               </div>
               <div class="sresult_content">
                 <h4>HP Pavilion 15</h4>
@@ -440,7 +589,11 @@
             </a>
             <a href="product-view.html" class="single_sresult_product">
               <div class="sresult_img">
-                <img loading="lazy" src="assets/images/laptop-1.png" alt="product">
+                <img
+                  loading="lazy"
+                  src="assets/images/laptop-1.png"
+                  alt="product"
+                />
               </div>
               <div class="sresult_content">
                 <h4>HP Pavilion 15</h4>
@@ -449,11 +602,11 @@
                 </div>
               </div>
             </a>
-
           </div>
         </div>
       </div>
       <div class="header_icon d-flex align-items-center">
+        <!--
         <a href="wish-list.html" class="icon_wrp text-center wishlist ms-0">
           <span class="icon">
             <i class="icon-heart"></i>
@@ -461,8 +614,13 @@
           <span class="icon_text">Wish List</span>
           <span class="pops">6</span>
         </a>
+        -->
+        @if(proposer){
         <div class="shopcart">
-          <a href="shopping-cart.html" class="icon_wrp text-center d-none d-lg-block">
+          <a
+            href="shopping-cart.html"
+            class="icon_wrp text-center d-none d-lg-block"
+          >
             <span class="icon">
               <i class="icon-cart"></i>
             </span>
@@ -477,25 +635,33 @@
               <a href="product-view.html" class="single_cartdrop mb-3">
                 <span class="remove_cart"><i class="las la-times"></i></span>
                 <div class="cartdrop_img">
-                  <img loading="lazy" src="assets/images/shoes-5.png" alt="product">
+                  <img
+                    loading="lazy"
+                    src="assets/images/shoes-5.png"
+                    alt="product"
+                  />
                 </div>
                 <div class="cartdrop_cont">
-                  <h5 class="text_lg mb-0 default_link">
-                    Men casual shoes
-                  </h5>
-                  <p class="mb-0 text_xs text_p">x1 <span class="ms-2">$450</span></p>
+                  <h5 class="text_lg mb-0 default_link">Men casual shoes</h5>
+                  <p class="mb-0 text_xs text_p">
+                    x1 <span class="ms-2">$450</span>
+                  </p>
                 </div>
               </a>
               <a href="product-view.html" class="single_cartdrop">
                 <span class="remove_cart"><i class="las la-times"></i></span>
                 <div class="cartdrop_img">
-                  <img loading="lazy" src="assets/images/headphone-2.png" alt="product">
+                  <img
+                    loading="lazy"
+                    src="assets/images/headphone-2.png"
+                    alt="product"
+                  />
                 </div>
                 <div class="cartdrop_cont">
-                  <h5 class="text_lg mb-0 default_link">
-                    Men casual shoes
-                  </h5>
-                  <p class="mb-0 text_xs text_p">x1 <span class="ms-2">$450</span></p>
+                  <h5 class="text_lg mb-0 default_link">Men casual shoes</h5>
+                  <p class="mb-0 text_xs text_p">
+                    x1 <span class="ms-2">$450</span>
+                  </p>
                 </div>
               </a>
             </div>
@@ -504,11 +670,18 @@
               <h4 class="text_lg mb-0 ms-2">$980.00</h4>
             </div>
             <div class="cartdrop_footer d-flex mt-3">
-              <a href="shopping-cart.html" class="default_btn w-50 text_xs px-1">View Cart</a>
-              <a href="checkout.html" class="default_btn second ms-3 w-50 text_xs px-1">Checkout</a>
+              <a href="shopping-cart.html" class="default_btn w-50 text_xs px-1"
+                >View Cart</a
+              >
+              <a
+                href="checkout.html"
+                class="default_btn second ms-3 w-50 text_xs px-1"
+                >Checkout</a
+              >
             </div>
           </div>
         </div>
+        }
         <div class="position-relative myacwrap">
           <a href="javascript:void(0)" class="icon_wrp text-center myacc">
             <span class="icon">
@@ -518,11 +691,13 @@
           </a>
           <div class="myacc_cont">
             <div class="ac_join">
-              <p>Welcome to RAFCART Shop</p>
+              <p>Bienvenido {{ proposer?.name }} a Alianza - Seguros</p>
+              @if (!proposer) {
               <div class="account_btn d-flex justify-content-between">
                 <a routerLink="/register" class="default_btn">Join</a>
                 <a routerLink="/login" class="default_btn second">Sing in</a>
               </div>
+              }
             </div>
             <div class="ac_links">
               <a routerLink="/profile" class="myac">
@@ -541,7 +716,7 @@
                 <i class="icon-cart"></i>
                 My Cart
               </a>
-              <a routerLink="/login">
+              <a (click)="logout()" routerLink="/login">
                 <i class="las la-power-off"></i>
                 Log out
               </a>
@@ -549,7 +724,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </nav>
@@ -596,9 +770,7 @@
     </h5>
     <ul>
       <li class="withsub">
-        <a href="javascript:void(0)">
-          Home
-        </a>
+        <a href="javascript:void(0)"> Home </a>
         <div class="submn">
           <a href="index-1.html">Home 1</a>
           <a href="index-2.html">Home 2</a>
@@ -607,9 +779,7 @@
       </li>
 
       <li class="withsub">
-        <a href="javascript:void(0)">
-          Shop
-        </a>
+        <a href="javascript:void(0)"> Shop </a>
         <div class="submn">
           <a href="shop-list.html">List View</a>
           <a href="shop-grid.html">Grid View</a>
@@ -620,9 +790,7 @@
         </div>
       </li>
       <li class="withsub">
-        <a href="javascript:void(0)">
-          My Account
-        </a>
+        <a href="javascript:void(0)"> My Account </a>
         <div class="submn">
           <a routerLink="/profile">My account</a>
           <a routerLink="/login">Login</a>
@@ -631,9 +799,7 @@
         </div>
       </li>
       <li class="withsub">
-        <a href="javascript:void(0)">
-          Other pages
-        </a>
+        <a href="javascript:void(0)"> Other pages </a>
         <div class="submn">
           <a href="about-us.html">about us</a>
           <a href="contact-us.html">Contact us</a>
@@ -666,24 +832,24 @@
         <a href="product-view.html" class="single_cartdrop mb-3">
           <span class="remove_cart"><i class="las la-times"></i></span>
           <div class="cartdrop_img">
-            <img loading="lazy" src="assets/images/shoes-5.png" alt="product">
+            <img loading="lazy" src="assets/images/shoes-5.png" alt="product" />
           </div>
           <div class="cartdrop_cont">
-            <h5 class="text_lg mb-0 default_link">
-              Men casual shoes
-            </h5>
+            <h5 class="text_lg mb-0 default_link">Men casual shoes</h5>
             <p class="mb-0 text_xs text_p">x1 <span class="ms-2">$450</span></p>
           </div>
         </a>
         <a href="product-view.html" class="single_cartdrop">
           <span class="remove_cart"><i class="las la-times"></i></span>
           <div class="cartdrop_img">
-            <img loading="lazy" src="assets/images/headphone-2.png" alt="product">
+            <img
+              loading="lazy"
+              src="assets/images/headphone-2.png"
+              alt="product"
+            />
           </div>
           <div class="cartdrop_cont">
-            <h5 class="text_lg mb-0 default_link">
-              Men casual shoes
-            </h5>
+            <h5 class="text_lg mb-0 default_link">Men casual shoes</h5>
             <p class="mb-0 text_xs text_p">x1 <span class="ms-2">$450</span></p>
           </div>
         </a>
@@ -694,8 +860,14 @@
           <h4 class="text_lg mb-0 ms-2">$980.00</h4>
         </div>
         <div class="cartdrop_footer mt-3 d-flex">
-          <a href="shopping-cart.html" class="default_btn w-50 text_xs px-1">View Cart</a>
-          <a href="checkout.html" class="default_btn second ms-3 w-50 text_xs px-1">Checkout</a>
+          <a href="shopping-cart.html" class="default_btn w-50 text_xs px-1"
+            >View Cart</a
+          >
+          <a
+            href="checkout.html"
+            class="default_btn second ms-3 w-50 text_xs px-1"
+            >Checkout</a
+          >
         </div>
       </div>
     </div>
@@ -711,7 +883,7 @@
     </span>
   </div>
   <form>
-    <input type="text" placeholder="search products...">
+    <input type="text" placeholder="search products..." />
     <button>
       <i class="icon-search-left"></i>
     </button>
@@ -720,7 +892,7 @@
   <div class="search_result_product">
     <a href="product-view.html" class="single_sresult_product">
       <div class="sresult_img">
-        <img loading="lazy" src="assets/images/laptop-2.png" alt="product">
+        <img loading="lazy" src="assets/images/laptop-2.png" alt="product" />
       </div>
       <div class="sresult_content">
         <h4>HP Pavilion 15</h4>
@@ -732,7 +904,7 @@
     </a>
     <a href="product-view.html" class="single_sresult_product">
       <div class="sresult_img">
-        <img loading="lazy" src="assets/images/phone-1.png" alt="product">
+        <img loading="lazy" src="assets/images/phone-1.png" alt="product" />
       </div>
       <div class="sresult_content">
         <h4>Xiaomi Note 7 Pro</h4>
@@ -840,46 +1012,66 @@
         <div class="single_mega_menu brnd">
           <div class="mega_brands">
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-1.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-1.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-2.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-2.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-3.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-3.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-4.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-4.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-5.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-5.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-6.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-6.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-7.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-7.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-8.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-8.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-9.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-9.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-10.png" alt="brand">
+              <img
+                loading="lazy"
+                src="assets/images/brand-10.png"
+                alt="brand"
+              />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-11.png" alt="brand">
+              <img
+                loading="lazy"
+                src="assets/images/brand-11.png"
+                alt="brand"
+              />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-12.png" alt="brand">
+              <img
+                loading="lazy"
+                src="assets/images/brand-12.png"
+                alt="brand"
+              />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-13.png" alt="brand">
+              <img
+                loading="lazy"
+                src="assets/images/brand-13.png"
+                alt="brand"
+              />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-14.png" alt="brand">
+              <img
+                loading="lazy"
+                src="assets/images/brand-14.png"
+                alt="brand"
+              />
             </a>
           </div>
         </div>
@@ -987,46 +1179,66 @@
         <div class="single_mega_menu brnd">
           <div class="mega_brands">
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-1.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-1.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-2.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-2.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-3.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-3.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-4.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-4.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-5.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-5.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-6.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-6.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-7.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-7.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-8.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-8.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-9.png" alt="brand">
+              <img loading="lazy" src="assets/images/brand-9.png" alt="brand" />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-10.png" alt="brand">
+              <img
+                loading="lazy"
+                src="assets/images/brand-10.png"
+                alt="brand"
+              />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-11.png" alt="brand">
+              <img
+                loading="lazy"
+                src="assets/images/brand-11.png"
+                alt="brand"
+              />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-12.png" alt="brand">
+              <img
+                loading="lazy"
+                src="assets/images/brand-12.png"
+                alt="brand"
+              />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-13.png" alt="brand">
+              <img
+                loading="lazy"
+                src="assets/images/brand-13.png"
+                alt="brand"
+              />
             </a>
             <a href="#" class="mega_brnd_img">
-              <img loading="lazy" src="assets/images/brand-14.png" alt="brand">
+              <img
+                loading="lazy"
+                src="assets/images/brand-14.png"
+                alt="brand"
+              />
             </a>
           </div>
         </div>

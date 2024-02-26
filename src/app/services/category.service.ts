@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { DataToInterfaceService } from './data-to-interface.service';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Category } from '../interfaces/category';
+import { URL_BACKEND } from '../config/config';
+import { Response } from '../interfaces/response';
 
 @Injectable({
   providedIn: 'root'
@@ -14,14 +16,17 @@ export class CategoryService {
   ngOnInit(){}
 
   getCategories(): Observable<Category[]> {
-    //let URL = URL_BACKEND + 'proposer/login_proposer';
-    //return this.http.get<any>(URL)
-    return this.http
+    let URL = URL_BACKEND + 'category/get_list_category';
+    return this.http.get<Response>(URL).pipe(map((response: any) => {
+      return this.converter.dataToInterfaceCategories(response.data);
+    }),
+      catchError(this.handleError));
+    /*return this.http
       .get<any>('../../assets/data/data-category.json')
       .pipe(map((response: any) => {
         return this.converter.dataToInterfaceCategories(response);
       }),
-        catchError(this.handleError));
+        catchError(this.handleError));*/
   }
 
   private handleError(error: HttpErrorResponse) {

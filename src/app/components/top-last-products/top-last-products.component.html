@@ -8,20 +8,26 @@
         <h4 class="single_topr_title"></h4>
         <div class="single_top_ranking">
           <div class="topr_img">
-            <a routerLink="/auction/{{product.id}}/detail">
-              <img loading="lazy" src="{{product.images[0]}}" alt="product" />
+            <a routerLink="/auction/{{ product.id }}/detail">
+              <img
+                loading="lazy"
+                src="{{ url_base + product.images[0] }}"
+                alt="product"
+              />
             </a>
           </div>
           <div class="topr_content">
-            <a href="product-view.html">
-              <h4>{{product.commercial_name}}</h4>
+            <a routerLink="/auction/{{product.id}}/detail">
+              <h4>{{ product.commercial_name }}</h4>
             </a>
             <div class="price">
-              <h4>{{product.category}}</h4>
+              <h4>{{ product.category }}</h4>
             </div>
             <div class="price">
-              <span class="org_price">{{product.current_bid}}</span>
-              <span class="prev_price">{{product.base_price}}</span>
+              <span class="org_price">{{ product.current_bid }} Bs.</span>
+              @if(product.base_price != product.current_bid){
+              <span class="prev_price">{{ product.base_price }} Bs.</span>
+              }
             </div>
             <div class="rating">
               <div class="d-flex align-items-center justify-content-start">
