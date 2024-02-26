@@ -8,8 +8,8 @@ export interface Product {
     start_date: Date;
     end_date: Date;
     category: string;
-    incremento_puja: number;
+    minimum_increase: number;
     state: number;
-    timer: any;
-    puja_actual: number;
+    timer: any | null;
+    current_bid: number;
 }

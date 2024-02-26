@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { BreadcrumbsComponent } from '../../components/breadcrumbs/breadcrumbs.component';
 import { DetailProductComponent } from '../../components/detail-product/detail-product.component';
 
+declare var $: any;
+declare function initPage([]): any;
+
 @Component({
   selector: 'app-detail-auction',
   standalone: true,
@@ -10,5 +13,9 @@ import { DetailProductComponent } from '../../components/detail-product/detail-p
   styleUrl: './detail-auction.component.css'
 })
 export class DetailAuctionComponent {
-
+  constructor() {
+    setTimeout(() => {
+      initPage($);
+    }, 50);
+  }
 }

@@ -142,9 +142,15 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-12">
+                                <div class="single_billing_inp">
+                                    <label>Fotos del CI (Anverso - Reverso) <span>*</span></label>
+                                    <app-img-drop-zone (fileChange)="files = $event"></app-img-drop-zone>
+                                </div>
+                            </div>
                             <div class="col-12 mt-3">
                                 <button type="submit" class="default_btn xs_btn rounded px-4 d-block w-100"
-                                    [disabled]="!registerForm.valid"
+                                    (click)="register()" [disabled]="!registerForm.valid"
                                     [ngClass]="{'disabled-button': !registerForm.valid}">Registrarse</button>
                             </div>
 

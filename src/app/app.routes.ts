@@ -13,6 +13,6 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'auction', component: AuctionComponent },
-  { path: 'auction/detail', component: DetailAuctionComponent },
+  { path: 'auction/:id_auction/detail', component: DetailAuctionComponent },
   //{ path: '**', component: Error404Component },
 ];

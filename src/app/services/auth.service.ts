@@ -1,18 +1,19 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { URL_BACKEND } from '../config/config';
 import { Proposer } from '../interfaces/proposer';
+import { DataToInterfaceService } from './data-to-interface.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
 
   proposer!: Proposer;
   token: any = '';
+
+  constructor(private http: HttpClient, private converter: DataToInterfaceService) {}
 
   login(formData: FormData): Observable<any> {
     let URL = 'proposer/login_proposer';
@@ -20,7 +21,7 @@ export class AuthService {
       map((response: any) => {
         console.log('SERVICE: ' + response.success);
         if (response.success) {
-          this.proposer = this.ModelToInterfaceProposer(response.data);
+          this.proposer = this.converter.dataToInterfaceProposer(response.data);
           this.token = response.token;
 
           sessionStorage.setItem('token', JSON.stringify(response.token));
@@ -37,6 +38,11 @@ export class AuthService {
     );
   }
 
+  register(formData: FormData): Observable<any> {
+    let URL = 'proposer/register_proposer';
+    return this.http.post<any>(URL_BACKEND + URL, formData);
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       console.error('Se ha producido un error', error.error);
@@ -50,20 +56,5 @@ export class AuthService {
     return throwError(
       () => new Error('Algo falló. Por favor intente nuevamente.')
     );
-  }
-
-  ModelToInterfaceProposer(data: any): Proposer {
-    return {
-      id: data.id,
-      name: data.nombre,
-      surname: data.apellido,
-      ci: data.ci,
-      email: data.correo,
-      phone: data.telefono,
-      url_img_1: data.url_img_1,
-      url_img_2: data.url_img_2,
-      verify: data.verificado,
-      // Puedes incluir otros atributos de userData que coincidan con los de la interfaz Usuario
-    } as Proposer;
   }
 }

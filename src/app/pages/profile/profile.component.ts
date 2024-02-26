@@ -1,14 +1,23 @@
 import { Component } from '@angular/core';
-import { FormUpdateProfileComponent } from '../../components/form-update-profile/form-update-profile.component';
 import { BreadcrumbsComponent } from '../../components/breadcrumbs/breadcrumbs.component';
+import { FormProfileComponent } from '../../components/form-profile/form-profile.component';
+
+declare var $: any;
+declare function initPage([]): any;
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [FormUpdateProfileComponent, BreadcrumbsComponent],
+  imports: [FormProfileComponent, BreadcrumbsComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+
+  constructor() {
+    setTimeout(() => {
+      initPage($);
+    }, 50);
+  }
 
 }

@@ -1,0 +1,13 @@
+<!-- in app.component.html -->
+<ngx-dropzone (change)="onSelect($event)" accept=".jpg, .jpeg, .png">
+	<ngx-dropzone-label>Subir imagenes, ¡Arrastra y suelta en cualquier lugar tus imagenes!</ngx-dropzone-label>
+	<ngx-dropzone-preview *ngFor="let f of files" [removable]="true" (removed)="onRemove(f)">
+		<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+	</ngx-dropzone-preview>
+</ngx-dropzone>
+
+<ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" *ngFor="let f of files" [file]="f">
+	<!--
+	<ngx-dropzone-label>{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
+-->
+</ngx-dropzone-image-preview>

@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import Swal from 'sweetalert2';
 import { Message } from '../../interfaces/message'; 
 import { Router, RouterLink } from '@angular/router';
+import { SweetAlert2Service } from '../../services/sweet-alert-2.service';
 
 @Component({
   selector: 'app-form-login',
@@ -31,7 +32,7 @@ export class FormLoginComponent {
     icon: 'info',
   };
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private alert: SweetAlert2Service) {}
 
   ngOnInit(): void {}
 
@@ -50,13 +51,13 @@ export class FormLoginComponent {
           this.message.title = 'Enviado';
           this.message.text = 'Datos Correctos.';
           this.message.icon = 'success';
-          this.showMessage();
+          this.alert.viewMessage(this.message);
           this.router.navigate(['/']);
         } else {
           this.message.title = 'Error!';
           this.message.text = 'Credenciales incorrectas, intentelo de nuevo.';
           this.message.icon = 'error';
-          this.showMessage();
+          this.alert.viewMessage(this.message);
         }
       },
       error: (error) => {
@@ -65,19 +66,8 @@ export class FormLoginComponent {
         this.message.text =
           'Error al comunicarse con el servidor, intentelo de nuevo.';
         this.message.icon = 'error';
-        this.showMessage();
+        this.alert.viewMessage(this.message);
       },
-    });
-  }
-
-  showMessage() {
-    Swal.fire({
-      title: this.message.title,
-      text: this.message.text,
-      icon: this.message.icon,
-      timer: 5000, // Tiempo en milisegundos (en este caso, 3 segundos)
-      timerProgressBar: true, // Muestra una barra de progreso
-      showConfirmButton: false, // Oculta el botón de confirmación
     });
   }
 }
