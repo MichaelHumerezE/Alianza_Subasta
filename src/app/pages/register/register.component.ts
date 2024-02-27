@@ -17,7 +17,7 @@ export class RegisterComponent {
   constructor() {
     setTimeout(() => {
       initPage($);
-    }, 1000);
+    }, 50);
   }
 
 }

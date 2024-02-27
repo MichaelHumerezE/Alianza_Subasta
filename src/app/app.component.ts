@@ -15,10 +15,4 @@ declare function initPage([]): any;
 })
 export class AppComponent {
   title = 'Alianza_Subastas';
-
-  constructor(){
-    setTimeout(()=>{
-      initPage($);
-    }, 50);
-  }
 }

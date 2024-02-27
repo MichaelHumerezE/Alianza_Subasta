@@ -1,3 +1,45 @@
+<div class="container mt-5">
+  <div class="row row-cols-1 row-cols-md-4 g-4 mb-3">
+    <app-select
+      [data]="categories"
+      [title]="'Categorias:'"
+      (valueChange)="filters.category = $event"
+    ></app-select>
+    <app-select
+      [data]="months"
+      [title]="'Meses:'"
+      (valueChange)="filters.month = $event"
+    ></app-select>
+    <app-select
+      [data]="years"
+      [title]="'Años:'"
+      (valueChange)="filters.year = $event"
+    ></app-select>
+    <app-select
+      [data]="sorts"
+      [title]="'Orden:'"
+      (valueChange)="filters.sort = $event"
+    ></app-select>
+    <div class="col">
+      <div class="container">
+        <h5>
+          <b>Prueba</b>
+        </h5>
+      </div>
+      <select
+        class="form-select"
+        aria-label="Default select example"
+        [(ngModel)]="filters.category"
+      >
+        <option selected value="">Seleccione una opcion</option>
+        @for (item of categories; track $index) {
+        <option value="{{ item }}">{{ item }}</option>
+        }
+      </select>
+    </div>
+  </div>
+</div>
+
 <!-- recomended -->
 <section class="new_arrive section_padding_b">
   <div class="container">
@@ -5,32 +47,45 @@
       <h2 class="section_title_2">Productos Ofertados</h2>
       @if (router.url === '/home' || router.url === '/') {
       <div class="seemore_2 pt-2">
-        <a routerLink="/auction">Ver más... <span><i class="las la-angle-right"></i></span></a>
+        <a routerLink="/auction"
+          >Ver más... <span><i class="las la-angle-right"></i></span
+        ></a>
       </div>
       }
     </div>
     <div class="row gy-4">
-      @for (product of products; track $index) {
-      <div class="col-lg-3 col-sm-6">
+      <div
+        *ngFor="let product of products | filterProduct : filters"
+        class="col-lg-3 col-sm-6"
+      >
         <div class="single_new_arrive">
           <div class="sna_img">
-            <img loading="lazy" class="prd_img" src="{{ url_base + product.images[0]}}" alt="product" />
-            <span class="tag">{{product.category}}</span>
+            <img
+              loading="lazy"
+              class="prd_img"
+              src="{{ url_base + product.images[0] }}"
+              alt="product"
+            />
+            <span class="tag">{{ product.category }}</span>
             <div class="prodcut_hovcont">
-              <a routerLink="/auction/{{product.id}}/detail" class="icon open_quickview" tabindex="0">
+              <a
+                routerLink="/auction/{{ product.id }}/detail"
+                class="icon open_quickview"
+                tabindex="0"
+              >
                 <i class="icon-search-left"></i>
               </a>
             </div>
           </div>
           <div class="sna_content">
-            <a routerLink="/auction/{{product.id}}/detail">
-              <h4>{{product.commercial_name}}</h4>
+            <a routerLink="/auction/{{ product.id }}/detail">
+              <h4>{{ product.commercial_name }}</h4>
             </a>
             <div class="ratprice">
               <div class="price">
-                <span class="org_price">{{product.current_bid}} Bs</span>
+                <span class="org_price">{{ product.current_bid }} Bs</span>
                 @if(product.base_price != product.current_bid){
-                <span class="prev_price">{{product.base_price}} Bs</span>
+                <span class="prev_price">{{ product.base_price }} Bs</span>
                 }
               </div>
               <div class="rating">
@@ -47,12 +102,16 @@
               </div>
             </div>
             <div class="product_adcart">
-              <button class="default_btn" routerLink="/auction/{{product.id}}/detail">Enviar Puja</button>
+              <button
+                class="default_btn"
+                routerLink="/auction/{{ product.id }}/detail"
+              >
+                Enviar Puja
+              </button>
             </div>
           </div>
         </div>
       </div>
-      }
     </div>
   </div>
 </section>

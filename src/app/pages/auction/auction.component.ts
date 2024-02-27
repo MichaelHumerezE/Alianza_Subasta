@@ -13,11 +13,9 @@ declare function initPage([]): any;
   styleUrl: './auction.component.css'
 })
 export class AuctionComponent {
-
   constructor() {
     setTimeout(() => {
       initPage($);
-    }, 1000);
+    }, 500);
   }
-
 }

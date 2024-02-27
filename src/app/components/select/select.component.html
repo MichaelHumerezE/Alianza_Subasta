@@ -1,0 +1,14 @@
+<div class="col">
+  <div class="container">
+    <h5>
+      <b>{{ title }}</b>
+    </h5>
+  </div>
+  <select class="form-select" aria-label="Default select example" 
+  (change)="load()" [(ngModel)] = "valueData">
+    <option selected value="">Seleccione una opcion</option>
+    @for (item of data; track $index) {
+    <option value="{{item}}">{{ item }}</option>
+    }
+  </select>
+</div>

@@ -42,3 +42,10 @@ export const AUCTION_STATE = [
   'Finalizado',
   'Cancelado',
 ];
+
+export const PROPOSER_VERIFY = [
+  'Proponente No Verificado',
+  'Proponente Verificado',
+  'Datos del Proponente Rechazado',
+  'Cuenta del Proponente Suspendida',
+];

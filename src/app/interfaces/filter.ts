@@ -1,8 +1,8 @@
 export interface Filter {
     category: string;
-    state: number;
-    year: number;
-    month: number;
-    word: string;
-    order: number;
+    state: string;
+    year: string;
+    month: string;
+    search: string;
+    sort: string;
 }

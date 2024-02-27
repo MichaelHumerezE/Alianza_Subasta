@@ -5,7 +5,6 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { Response } from '../interfaces/response';
 import { URL_BACKEND } from '../config/config';
 import { AuthService } from './auth.service';
 import { DataToInterfaceService } from './data-to-interface.service';
@@ -19,10 +18,10 @@ export class ProposerService {
   getProposerById(formData: FormData): Observable<any> {
     let URL = URL_BACKEND + 'proposer/get_proposer_by_id';
     return this.http.post<any>(URL, formData, this.getHttpHeaders()).pipe(
-      map((response) => {
+      map((response: any) => {
         console.log('PROPOSER-SERVICE (getProposerById): ', response);
         if (response.success) {
-          response.token = JSON.parse(this.authService.token);
+          response.token = this.authService.token;
           this.authService.saveSessionStorage(response);
           response.data = this.authService.proposer;
           return response;
@@ -33,13 +32,13 @@ export class ProposerService {
     );
   }
 
-  updateProposer(formData: FormData): Observable<Response> {
+  updateProposer(formData: FormData): Observable<any> {
     let URL = URL_BACKEND + 'proposer/edit_proposer_api';
     return this.http.post<any>(URL, formData, this.getHttpHeaders()).pipe(
-      map((response) => {
+      map((response: any) => {
         console.log('PROPOSER-SERVICE (updateProposer): ', response);
         if (response.success) {
-          response.token = JSON.parse(this.authService.token);
+          response.token = this.authService.token;
           this.authService.saveSessionStorage(response);
         }
         return response;

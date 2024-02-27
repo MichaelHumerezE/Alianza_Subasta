@@ -17,7 +17,7 @@ export class ProfileComponent {
   constructor() {
     setTimeout(() => {
       initPage($);
-    }, 1000);
+    }, 50);
   }
 
 }

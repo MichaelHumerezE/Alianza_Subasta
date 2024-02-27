@@ -68,6 +68,10 @@ export class AuthService {
     sessionStorage.removeItem('proposer_id');
   }
 
+  getProposerLocal(): Proposer{
+    return this.proposer as Proposer;
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
       console.error('Se ha producido un error', error.error);
