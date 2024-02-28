@@ -41,9 +41,19 @@ export class ProductService {
         catchError(this.handleError));*/
   }
 
-  sendOffer(formData: FormData) {
-    //let URL = URL_BACKEND + 'proposer/login_proposer';
-    //return this.http.post<any>(URL)
+  getProductsByIdProposer(formData: FormData): Observable<Product[]> {
+    let URL = URL_BACKEND + 'bidding/get_biddings_article_by_proposer';
+    return this.http.post<any>(URL, formData).pipe(map((response: Response) => {
+      console.log(response);
+      return this.converter.dataToInterfaceProducts(response.data!);
+    }),
+      catchError(this.handleError));
+    /*return this.http
+      .get<any>('../../assets/data/data-product-detail.json')
+      .pipe(map((response: any) => {
+        return this.converter.dataToInterfaceProduct(response);
+      }),
+        catchError(this.handleError));*/
   }
 
   private handleError(error: HttpErrorResponse) {

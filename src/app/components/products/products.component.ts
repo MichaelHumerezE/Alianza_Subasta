@@ -46,9 +46,9 @@ export class ProductsComponent {
   ngOnInit(){
     this.loadProducts();
     this.loadCategories();
-    setInterval(() => {
+    /*setInterval(() => {
       console.log(this.filters);
-    }, 5000);
+    }, 5000);*/
   }
 
   loadProducts(){

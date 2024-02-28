@@ -3,16 +3,16 @@ import { Product } from '../interfaces/product';
 import { Proposer } from '../interfaces/proposer';
 import { Category } from '../interfaces/category';
 import { Attribute } from '../interfaces/attribute';
+import { Offer } from '../interfaces/offer';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class DataToInterfaceService {
-
-  constructor() { }
+  constructor() {}
 
   dataToInterfaceProposers(data: any[]): Proposer[] {
-    return data.map(item => ({
+    return data.map((item) => ({
       id: item.id,
       name: item.nombre,
       surname: item.apellido,
@@ -40,7 +40,7 @@ export class DataToInterfaceService {
   }
 
   dataToInterfaceProducts(data: any[]): Product[] {
-    return data.map(item => ({
+    return data.map((item) => ({
       id: item.id,
       commercial_name: item.nombre_comercial,
       full_name: item.nombre_completo,
@@ -53,7 +53,7 @@ export class DataToInterfaceService {
       minimum_increase: item.incremento_minimo,
       state: item.estado_subasta,
       timer: null,
-      current_bid: item.puja_actual?item.puja_actual:item.precio_base,
+      current_bid: item.puja_actual ? item.puja_actual : item.precio_base,
     }));
   }
 
@@ -68,15 +68,15 @@ export class DataToInterfaceService {
       start_date: data.fecha_inicio,
       end_date: data.fecha_fin,
       category: data.categoria,
-      minimum_increase: data.incremento_puja,
+      minimum_increase: data.incremento_minimo,
       state: data.estado_subasta,
       timer: null,
-      current_bid: data.puja_actual?data.puja_actual:data.precio_base,
+      current_bid: data.puja_actual ? data.puja_actual : data.precio_base,
     } as Product;
   }
 
   dataToInterfaceCategories(data: any[]): Category[] {
-    return data.map(item => ({
+    return data.map((item) => ({
       id: item.id,
       name: item.nombre,
       description: item.descripcion,
@@ -92,7 +92,7 @@ export class DataToInterfaceService {
   }
 
   dataToInterfaceAttributes(data: any[]): Attribute[] {
-    return data.map(item => ({
+    return data.map((item) => ({
       id: item.id,
       name: item.nombre,
       value: item.valor,
@@ -105,5 +105,27 @@ export class DataToInterfaceService {
       name: data.nombre,
       value: data.valor,
     } as Attribute;
+  }
+
+  dataToInterfaceOffers(data: any[]): Offer[] {
+    return data.map((item) => ({
+      id: item.id,
+      proposer_id: item.proponente_id,
+      auction_article_id: item.subasta_articulo_id,
+      amount_offered: item.monto_ofertado,
+      register_date: item.fecha_registro,
+      proposer: item.proponente
+    }));
+  }
+
+  dataToInterfaceOffer(data: any): Offer {
+    return {
+      id: data.id,
+      proposer_id: data.proponente_id,
+      auction_article_id: data.subasta_articulo_id,
+      amount_offered: data.monto_ofertado,
+      register_date: data.fecha_registro,
+      proposer: data.proponente,
+    } as Offer;
   }
 }

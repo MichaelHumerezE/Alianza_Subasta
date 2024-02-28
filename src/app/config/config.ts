@@ -1,4 +1,4 @@
-export const URL_BACKEND = 'http://192.168.0.128:80/alianza/';
+export const URL_BACKEND = 'https://alianza.workcorp.net/subastas/';
 /*export const URL_BACKEND_IMAGES =
   URL_BACKEND + 'assets/images/proposers/';*/
 export const URL_BACKEND_IMAGES =

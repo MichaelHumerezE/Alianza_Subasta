@@ -1,0 +1,22 @@
+<div class="shop_filter">
+  <h4 class="filter_title">Atributos: </h4>
+</div>
+
+<table cTable responsive="xxl">
+  <thead cTableColor="dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">ATRIBUTO</th>
+      <th scope="col">NOMBRE</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (attribute of attributes; track $index) {
+    <tr>
+      <th scope="row">{{ $index + 1 }}</th>
+      <td>{{ attribute.name }}</td>
+      <td>{{ attribute.value }} Bs</td>
+    </tr>
+    }
+  </tbody>
+</table>

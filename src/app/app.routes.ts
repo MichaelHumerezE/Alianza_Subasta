@@ -6,6 +6,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { AuctionComponent } from './pages/auction/auction.component';
 import { DetailAuctionComponent } from './pages/detail-auction/detail-auction.component';
 import { authGuard, noAuthGuard } from './services/auth.guard';
+import { ParticipatedAuctionsComponent } from './pages/participated-auctions/participated-auctions.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -15,5 +16,6 @@ export const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'auction', component: AuctionComponent },
   { path: 'auction/:id_auction/detail', component: DetailAuctionComponent },
+  { path: 'auction/proposer', component: ParticipatedAuctionsComponent },
   //{ path: '**', component: Error404Component },
 ];

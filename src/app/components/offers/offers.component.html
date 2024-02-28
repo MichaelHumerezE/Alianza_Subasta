@@ -1,0 +1,24 @@
+<div class="shop_filter">
+  <h4 class="filter_title">Últimas 10 Pujas - Proponentes</h4>
+</div>
+
+<table cTable responsive="xxl">
+  <thead cTableColor="dark">
+    <tr>
+      <th scope="col">PUESTO</th>
+      <th scope="col">PROPONENTE</th>
+      <th scope="col">MONTO - PUJA</th>
+      <th scope="col">FECHA - HORA</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for (offer of offers; track $index) {
+    <tr>
+      <th scope="row">{{$index + 1}}</th>
+      <td>{{offer.proposer}}</td>
+      <td>{{offer.amount_offered}} Bs</td>
+      <td>{{offer.register_date}}</td>
+    </tr>
+    }
+  </tbody>
+</table>
