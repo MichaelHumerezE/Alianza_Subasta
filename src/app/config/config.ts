@@ -1,15 +1,17 @@
-export const URL_BACKEND = 'https://alianza.workcorp.net/subastas/';
-/*export const URL_BACKEND_IMAGES =
-  URL_BACKEND + 'assets/images/proposers/';*/
+//export const URL_BACKEND = 'https://alianza.workcorp.net/subastas/';
+
+export const URL_BACKEND = 'http://192.168.0.128:80/alianza/';
+
 export const URL_BACKEND_IMAGES =
   URL_BACKEND + 'assets/images/';
 
 /*export const URL_SERVICIOS = environment.URL_SERVICIOS;
 export const URL_FROTEND = environment.URL_FROTEND;*/
 
-//datas aux
+//DATAS AUXS
+
 export const YEARS = [
-  2024, 2025, 2026, 2027, 2028, 2029, 2030, 2031, 2033, 2034,
+  2024, 2025, 2026, 2027, 2028
 ];
 
 export const MONTHS = [

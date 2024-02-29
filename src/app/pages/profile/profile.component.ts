@@ -13,11 +13,4 @@ declare function initPage([]): any;
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
-
-  constructor() {
-    setTimeout(() => {
-      initPage($);
-    }, 50);
-  }
-
 }

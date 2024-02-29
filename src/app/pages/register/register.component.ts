@@ -13,11 +13,4 @@ declare function initPage([]): any;
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-
-  constructor() {
-    setTimeout(() => {
-      initPage($);
-    }, 50);
-  }
-
 }

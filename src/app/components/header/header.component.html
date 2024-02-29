@@ -23,9 +23,9 @@
             >Subastas <span><i class="las la-angle-down"></i></span
           ></a>
           <ul class="subnav">
-            <li><a routerLink="/">Iniciado </a></li>
-            <li><a routerLink="/">Finalizado </a></li>
-            <li><a routerLink="/">Cancelado </a></li>
+            <li><a routerLink="/auction/state/2">Iniciado </a></li>
+            <li><a routerLink="/auction/state/3">Finalizado </a></li>
+            <li><a routerLink="/auction/state/5">Cancelado </a></li>
           </ul>
         </li>
         <li class="withsubs">
@@ -35,11 +35,15 @@
           <ul class="subnav">
             @for (category of categories; track $index) {
             <li>
-              <a routerLink="/">{{ category.name }} </a>
+              <a
+                routerLink="/auction/category/{{ category.name.toLowerCase() }}"
+                >{{ category.name }}
+              </a>
             </li>
             }
           </ul>
         </li>
+        <!--
         <li class="withsubs">
           <a href="shop-list.html"
             >Shop <span><i class="las la-angle-down"></i></span
@@ -89,7 +93,8 @@
             </div>
           </div>
         </li>
-        <li><a href="contact-us.html">contact</a></li>
+        -->
+        <li><a href="contact-us.html">Contact</a></li>
         <li class="tophead_items ms-auto">
           <div class="me-3">
             @if (!proposer) {
@@ -97,7 +102,9 @@
             ><span class="text_xs">/</span
             ><a class="text-semibold" routerLink="/register">registrarse</a>
             }@else {
-              <a class="text-semibold" routerLink="/profile">Bienvenido {{proposer.email}}</a>
+            <a class="text-semibold" routerLink="/profile"
+              >Bienvenido {{ proposer.email }}</a
+            >
             }
           </div>
           <!--
@@ -549,22 +556,26 @@
       </div>
       <div class="search_wrap d-none d-lg-block">
         <div class="search d-flex">
+          <!--
           <div class="search_category">
             <select class="nice_select">
               <option value="">All category</option>
               <option value="">Men</option>
             </select>
           </div>
+          -->
           <div class="search_input">
             <input
+              [(ngModel)]="filters.search"
+              class="rounded"
               type="text"
-              placeholder="Search product..."
+              placeholder="Bucar producto..."
               id="show_suggest"
             />
           </div>
           <div class="search_subimt">
             <button>
-              <span class="d-none d-sm-inline-block">Search</span>
+              <span class="d-none d-sm-inline-block">Buscar</span>
               <span class="d-sm-none d-inline-block"
                 ><i class="icon-search-left"></i
               ></span>
@@ -573,21 +584,38 @@
         </div>
         <div class="search_suggest shadow-sm">
           <div class="search_result_product">
-            <a href="product-view.html" class="single_sresult_product">
+            <a
+              *ngFor="
+                let product of products
+                  | filterProduct
+                    : filters.category
+                    : filters.month
+                    : filters.year
+                    : filters.search
+                    : filters.sort
+                    : filters.state
+              "
+              routerLink="/auction/{{ product.id }}/detail"
+              class="single_sresult_product"
+            >
               <div class="sresult_img">
                 <img
                   loading="lazy"
-                  src="assets/images/laptop-2.png"
+                  src="{{ url_base + product.images[0] }}"
                   alt="product"
                 />
               </div>
               <div class="sresult_content">
-                <h4>HP Pavilion 15</h4>
+                <h4>{{ product.commercial_name }}</h4>
                 <div class="price">
-                  <span class="org_price">$45.00</span>
+                  <span class="org_price">{{ product.current_bid }} Bs</span>
+                  @if(product.base_price != product.current_bid){
+                  <span class="prev_price">{{ product.base_price }} Bs</span>
+                  }
                 </div>
               </div>
             </a>
+            <!--
             <a href="product-view.html" class="single_sresult_product">
               <div class="sresult_img">
                 <img
@@ -603,7 +631,7 @@
                 </div>
               </div>
             </a>
-          </div>
+          --></div>
         </div>
       </div>
       <div class="header_icon d-flex align-items-center">
@@ -671,7 +699,9 @@
               <h4 class="text_lg mb-0 ms-2">$980.00</h4>
             </div>
             <div class="cartdrop_footer d-flex mt-3">
-              <a routerLink="/auction/proposer" class="default_btn w-50 text_xs px-1"
+              <a
+                routerLink="/auction/proposer"
+                class="default_btn w-50 text_xs px-1"
                 >View Cart</a
               >
               <a
@@ -695,20 +725,26 @@
               <p>Bienvenido {{ proposer?.name }} a Alianza - Seguros</p>
               @if (!proposer) {
               <div class="account_btn d-flex justify-content-between">
-                <a routerLink="/register" class="default_btn">Join</a>
-                <a routerLink="/login" class="default_btn second">Sing in</a>
+                <a routerLink="/register" class="default_btn">Sing in</a>
+                <a routerLink="/login" class="default_btn second">Join</a>
               </div>
               }
             </div>
             <div class="ac_links">
+              @if (proposer) {
               <a routerLink="/profile" class="myac">
                 <i class="lar la-id-card"></i>
-                My Account
+                Mi Cuenta
               </a>
               <a href="account-order-history.html">
                 <i class="las la-gift"></i>
-                My Order
+                Subastas Participadas
               </a>
+              <a (click)="logout()" routerLink="/login">
+                <i class="las la-power-off"></i>
+                Log out
+              </a>
+              <!--
               <a href="wish-list.html">
                 <i class="lar la-heart"></i>
                 My Wishlist
@@ -717,10 +753,8 @@
                 <i class="icon-cart"></i>
                 My Cart
               </a>
-              <a (click)="logout()" routerLink="/login">
-                <i class="las la-power-off"></i>
-                Log out
-              </a>
+              -->
+              }
             </div>
           </div>
         </div>
@@ -754,8 +788,8 @@
       <span class="icon">
         <i class="icon-cart"></i>
       </span>
-      <span class="icon_text">Cart</span>
-      <span class="pops">8</span>
+      <span class="icon_text">Subastas-Participadas</span>
+      <span class="pops">10</span>
     </a>
   </div>
 </div>
@@ -773,43 +807,52 @@
       <li class="withsub">
         <a href="javascript:void(0)"> Home </a>
         <div class="submn">
-          <a href="index-1.html">Home 1</a>
+          <a routerLink="/">Inicio</a>
+          <!--
           <a href="index-2.html">Home 2</a>
           <a href="index-3.html">Home 3</a>
+          -->
         </div>
       </li>
 
       <li class="withsub">
-        <a href="javascript:void(0)"> Shop </a>
+        <a href="javascript:void(0)"> Subastas </a>
         <div class="submn">
-          <a href="shop-list.html">List View</a>
+          <a routerLink="/auction">Productos</a>
+          <!--
           <a href="shop-grid.html">Grid View</a>
           <a href="shop-grid-2.html">Grid View 2</a>
           <a href="wish-list.html">Wishlist</a>
           <a href="shopping-cart.html">Shopping cart</a>
           <a href="product-view.html">Product view</a>
+          -->
         </div>
       </li>
       <li class="withsub">
-        <a href="javascript:void(0)"> My Account </a>
+        <a href="javascript:void(0)"> Mi Cuenta </a>
         <div class="submn">
-          <a routerLink="/profile">My account</a>
+          @if (!proposer) {
           <a routerLink="/login">Login</a>
           <a routerLink="/register">Register</a>
+          }@else{
+          <a routerLink="/profile">Perfil</a>
           <a href="forgot-password.html">Forgot password</a>
+          }
         </div>
       </li>
       <li class="withsub">
-        <a href="javascript:void(0)"> Other pages </a>
+        <a href="javascript:void(0)"> Otras Páginas </a>
         <div class="submn">
-          <a href="about-us.html">about us</a>
-          <a href="contact-us.html">Contact us</a>
+          <a href="about-us.html">Acerca de Nosotros</a>
+          <a href="contact-us.html">Contacto</a>
+          <!--
           <a href="track-order.html">Track order</a>
           <a href="faq.html">FAQ</a>
           <a href="404.html">404</a>
           <a href="checkout.html">Checkout</a>
           <a href="payment.html">Payment</a>
           <a href="order-completed.html">Order complete</a>
+          -->
         </div>
       </li>
     </ul>
@@ -820,14 +863,14 @@
 <div class="mobile_menwrap d-lg-none" id="mobileCart">
   <div class="mobile_cart_wrap d-flex flex-column">
     <h5 class="mobile_title">
-      Cart
+      Subastas - Productos
       <span class="sidebarclose" id="mobileCartClose">
         <i class="las la-times"></i>
       </span>
     </h5>
     <div class="px-3 py-3 flex-grow-1 d-flex flex-column">
       <div class="cart_droptitle">
-        <h4 class="text_lg">Total 2 Items</h4>
+        <h4 class="text_lg">Total {{ products.length }} items</h4>
       </div>
       <div class="cartsdrop_wrap">
         <a href="product-view.html" class="single_cartdrop mb-3">
@@ -884,25 +927,50 @@
     </span>
   </div>
   <form>
-    <input type="text" placeholder="search products..." />
+    <input
+      type="text"
+      name="search"
+      placeholder="Buscar Productos..."
+      [(ngModel)]="filters.search"
+    />
     <button>
       <i class="icon-search-left"></i>
     </button>
   </form>
 
   <div class="search_result_product">
-    <a href="product-view.html" class="single_sresult_product">
+    <a
+      routerLink="/auction/{{ product.id }}/detail"
+      class="single_sresult_product"
+      *ngFor="
+        let product of products
+          | filterProduct
+            : filters.category
+            : filters.month
+            : filters.year
+            : filters.search
+            : filters.sort
+            : filters.state
+      "
+    >
       <div class="sresult_img">
-        <img loading="lazy" src="assets/images/laptop-2.png" alt="product" />
+        <img
+          loading="lazy"
+          src="{{ url_base + product.images[0] }}"
+          alt="product"
+        />
       </div>
       <div class="sresult_content">
-        <h4>HP Pavilion 15</h4>
+        <h4>{{ product.commercial_name }}</h4>
         <div class="price">
-          <span class="org_price">$45.00</span>
-          <span class="prev_price">$55.45</span>
+          <span class="org_price">{{ product.current_bid }} Bs</span>
+          @if(product.base_price != product.current_bid){
+          <span class="prev_price">{{ product.base_price }} Bs</span>
+          }
         </div>
       </div>
     </a>
+    <!--
     <a href="product-view.html" class="single_sresult_product">
       <div class="sresult_img">
         <img loading="lazy" src="assets/images/phone-1.png" alt="product" />
@@ -915,6 +983,7 @@
         </div>
       </div>
     </a>
+    -->
   </div>
 </div>
 
@@ -922,19 +991,20 @@
 <div class="mobile_menwrap d-lg-none" id="mobile_catwrap">
   <div class="sub_categories">
     <h5 class="mobile_title">
-      All categories
+      Categorias
       <span class="sidebarclose" id="catclose">
         <i class="las la-times"></i>
       </span>
     </h5>
-
-    <a href="#" class="singlecats">
+    @for (category of categories; track $index) {
+    <a routerLink="/auction/category/{{ category.name }}" class="singlecats">
       <span class="img_wrp">
         <i class="las la-shoe-prints"></i>
       </span>
-      <span class="txt">Shoes</span>
+      <span class="txt">{{ category.name }}</span>
     </a>
-
+    }
+    <!--
     <div class="singlecats withsub">
       <span class="img_wrp">
         <i class="las la-male"></i>
@@ -1251,5 +1321,6 @@
       </span>
       <span class="txt">Mobile</span>
     </a>
+    -->
   </div>
 </div>

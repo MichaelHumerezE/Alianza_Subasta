@@ -14,9 +14,4 @@ declare function initPage([]): any;
 })
 
 export class LoginComponent {
-  constructor() {
-    setTimeout(() => {
-      initPage($);
-    }, 50);
-  }
 }

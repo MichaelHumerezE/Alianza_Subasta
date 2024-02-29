@@ -26,7 +26,7 @@ import { AttributesComponent } from '../attributes/attributes.component';
     ReactiveFormsModule,
     CarouselComponent,
     OffersComponent,
-    AttributesComponent
+    AttributesComponent,
   ],
   templateUrl: './detail-product.component.html',
   styleUrl: './detail-product.component.css',
@@ -54,7 +54,7 @@ export class DetailProductComponent {
     private route: ActivatedRoute,
     private alert: SweetAlert2Service,
     private offerService: OfferService,
-    private authService: AuthService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -89,16 +89,18 @@ export class DetailProductComponent {
     if (
       Number(this.offerForm.get('proposer_offer')?.value) >= this.minimum_bid!
     ) {
-      const formData = this.loadFormData();
-      this.offerService.registerOffer(formData).subscribe({
-        next: (attributesData) => {
-          this.message.title = 'Enviado';
-          this.message.text = 'Datos Correctos.';
-          this.message.icon = 'success';
-          this.alert.viewMessage(this.message);
-          this.loadProduct();
-        },
-      });
+      if (this.verifyState()) {
+        const formData = this.loadFormData();
+        this.offerService.registerOffer(formData).subscribe({
+          next: (attributesData) => {
+            this.message.title = 'Enviado';
+            this.message.text = 'Datos Correctos.';
+            this.message.icon = 'success';
+            this.alert.viewMessage(this.message);
+            this.loadProduct();
+          },
+        });
+      }
     } else {
       this.message.title = '¡Valor No Valido!';
       this.message.text =
@@ -114,5 +116,16 @@ export class DetailProductComponent {
     formData.append('bidding_article_id', this.product?.id.toString()!);
     formData.append('bid', this.offerForm.get('proposer_offer')?.value);
     return formData;
+  }
+
+  verifyState(): boolean {
+    if (this.product?.state != 2) {
+      this.message.title = '¡No Disponible!';
+      this.message.text = 'Producto ya no disponible para la subasta';
+      this.message.icon = 'warning';
+      this.alert.viewMessage(this.message);
+      return false;
+    }
+    return true;
   }
 }

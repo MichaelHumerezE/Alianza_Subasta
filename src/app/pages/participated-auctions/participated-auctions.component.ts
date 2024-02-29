@@ -13,11 +13,4 @@ declare function initPage([]): any;
   styleUrl: './participated-auctions.component.css'
 })
 export class ParticipatedAuctionsComponent {
-
-  constructor() {
-    setTimeout(() => {
-      initPage($);
-    }, 50);
-  }
-
 }

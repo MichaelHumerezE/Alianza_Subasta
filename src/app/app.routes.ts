@@ -15,6 +15,8 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent, canActivate: [noAuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [authGuard] },
   { path: 'auction', component: AuctionComponent },
+  { path: 'auction/category/:category', component: AuctionComponent },
+  { path: 'auction/state/:state', component: AuctionComponent },
   { path: 'auction/:id_auction/detail', component: DetailAuctionComponent },
   { path: 'auction/proposer', component: ParticipatedAuctionsComponent },
   //{ path: '**', component: Error404Component },
