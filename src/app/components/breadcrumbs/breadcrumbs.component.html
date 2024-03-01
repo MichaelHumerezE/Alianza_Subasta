@@ -2,6 +2,9 @@
 <div class="container">
     <div class="breadcrumbs">
         <a routerLink="/"><i class="las la-home"></i></a>
-        <a href="#" class="active">Register</a>
+        <a class="active">{{pageFather}}</a>
+        @if (pageChild != '') {
+            <a href="#" class="active">{{pageChild}}</a>
+        }
     </div>
 </div>

@@ -1,0 +1,8 @@
+
+  <span class="animate-pulse {{textColor}} font-weight-bold">
+    @if (startTime! <= 0) {
+    <b> FINALIZADO </b>
+    }@else{
+    <b><cd-timer [startTime]="startTime!" [countdown]="true"></cd-timer></b>
+    }
+  </span>

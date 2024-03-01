@@ -26,8 +26,7 @@ export class AuthService {
       this.proposer = JSON.parse(sessionStorage.getItem('proposer')!);
       this.token = sessionStorage.getItem('token');
     }else{
-      this.token = '';
-      this.proposer = null;
+      this.logout();
     }
   }
 

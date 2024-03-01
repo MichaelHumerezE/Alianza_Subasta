@@ -21,7 +21,6 @@ export class ProposerService {
       map((response: any) => {
         console.log('PROPOSER-SERVICE (getProposerById): ', response);
         if (response.success) {
-          response.token = this.authService.token;
           this.authService.saveSessionStorage(response);
           response.data = this.authService.proposer;
           return response;

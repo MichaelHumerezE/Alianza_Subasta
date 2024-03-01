@@ -378,6 +378,7 @@
                     : filters.search
                     : filters.sort
                     : filters.state
+                  | paginate : { itemsPerPage: 5, currentPage: page }
               "
             >
               <div class="row">
@@ -414,6 +415,7 @@
                         <div
                           class="d-flex align-items-center justify-content-start"
                         >
+                          <!--
                           <div class="rating_star">
                             <span><i class="las la-star"></i></span>
                             <span><i class="las la-star"></i></span>
@@ -422,14 +424,16 @@
                             <span><i class="las la-star"></i></span>
                           </div>
                           <p class="rating_count">(150)</p>
+                          -->
                         </div>
                       </div>
-                      <div class="product_other_info">
+                      <div class="product_other_info mt-1">
+                        <app-countdown-timer
+                            [endDate]="product.end_date"
+                          ></app-countdown-timer>
+                      </div>
+                      <div class="product_other_info mt-1">
                         <p><span>Categoria:</span>{{ product?.category }}</p>
-                        <p>
-                          <span>Fecha de Finalización:</span
-                          >{{ product?.end_date }}
-                        </p>
                       </div>
                     </div>
                     <p class="product_list_desc">
@@ -440,7 +444,7 @@
                       routerLink="/auction/{{ product.id }}/detail"
                     >
                       <button class="list_product_btn">
-                        <span class="icon"><i class="icon-cart"></i></span>
+                        <span class="icon"><i class="fa fa-gavel"></i></span>
                         Pujar
                       </button>
                       <!--
@@ -459,6 +463,13 @@
         <div
           class="pagination_wrp d-flex align-items-center justify-content-center"
         >
+          <pagination-controls
+            class="my-pagination"
+            (pageChange)="page = $event"
+            previousLabel="Anterior"
+            nextLabel="Siguiente"
+          ></pagination-controls>
+          <!--
           <div class="single_paginat active">1</div>
           <div class="single_paginat">2</div>
           <div class="single_paginat">3</div>
@@ -466,6 +477,7 @@
           <div class="single_paginat">
             <i class="las la-long-arrow-alt-right"></i>
           </div>
+          -->
         </div>
       </div>
     </div>

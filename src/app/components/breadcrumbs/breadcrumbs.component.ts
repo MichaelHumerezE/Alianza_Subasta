@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-breadcrumbs',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './breadcrumbs.component.html',
   styleUrl: './breadcrumbs.component.css'
 })
 export class BreadcrumbsComponent {
 
+  @Input() pageFather: string = '';
+  @Input() pageChild: string = '';
 }

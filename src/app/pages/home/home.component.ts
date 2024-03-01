@@ -22,4 +22,11 @@ declare function initPage([]): any;
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
+
+  constructor() {
+    setTimeout(() => {
+      initPage($);
+    }, 50);
+  }
+  
 }

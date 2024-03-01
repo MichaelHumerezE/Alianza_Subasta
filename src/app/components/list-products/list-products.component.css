@@ -1,0 +1,22 @@
+.my-pagination ::ng-deep .ngx-pagination {
+    background-color: white;
+    /*
+    border-radius: 5px;
+    padding: 10px;
+    */
+}
+
+/*
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background: blue;
+    color: white;
+}
+
+.my-pagination ::ng-deep .ngx-pagination a {
+    color: grey;
+}
+
+.my-pagination ::ng-deep .ngx-pagination a:hover {
+    background: lightblue;
+}
+*/

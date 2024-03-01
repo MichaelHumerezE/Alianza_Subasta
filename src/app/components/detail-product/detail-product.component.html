@@ -56,7 +56,14 @@
               <span class="prev_price ms-0">{{ product?.base_price }} Bs</span>
               }
               <span class="org_price ms-2">{{ product?.current_bid }} Bs</span>
-              <div class="disc_tag ms-3">Timer</div>
+              <div class="disc_tag ms-3">
+                @if (product) {
+                <app-countdown-timer
+                  [textColor]="'text-light'"
+                  [endDate]="product.end_date"
+                ></app-countdown-timer>
+                }
+              </div>
             </div>
             <div class="product_other_info">
               <p><span>Observación:</span></p>
@@ -164,8 +171,8 @@
               (click)="sendOffer()"
               class="default_btn small rounded me-sm-3 me-2 px-4"
             >
-              Enviar Puja</button
-            >
+              <i class="fa fa-gavel"></i> Enviar Puja
+            </button>
             <!--
                         <a href="#" class="default_btn small rounded second border-none"><i class="icon-heart me-2"></i>
                             Wishlist</a>

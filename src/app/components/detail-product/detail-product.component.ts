@@ -17,6 +17,8 @@ import { OffersComponent } from '../offers/offers.component';
 import { OfferService } from '../../services/offer.service';
 import { AuthService } from '../../services/auth.service';
 import { AttributesComponent } from '../attributes/attributes.component';
+import { Subscription } from 'rxjs';
+import { CountdownTimerComponent } from '../countdown-timer/countdown-timer.component';
 
 @Component({
   selector: 'app-detail-product',
@@ -27,6 +29,7 @@ import { AttributesComponent } from '../attributes/attributes.component';
     CarouselComponent,
     OffersComponent,
     AttributesComponent,
+    CountdownTimerComponent
   ],
   templateUrl: './detail-product.component.html',
   styleUrl: './detail-product.component.css',
@@ -49,6 +52,10 @@ export class DetailProductComponent {
   url_base = URL_BACKEND_IMAGES + 'article/';
   minimum_bid?: number;
 
+  routeSub?: Subscription;
+
+  date = new Date();
+
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute,
@@ -58,8 +65,10 @@ export class DetailProductComponent {
   ) {}
 
   ngOnInit() {
-    this.readParams();
-    this.loadProduct();
+    this.route.params.subscribe((params) => {
+      this.id_auction = params['id_auction'];
+      this.loadProduct();
+    });
   }
 
   loadProduct() {
@@ -76,12 +85,6 @@ export class DetailProductComponent {
       error: (errorData) => {
         console.error(errorData);
       },
-    });
-  }
-
-  readParams(): void {
-    this.route.params.subscribe((params) => {
-      this.id_auction = params['id_auction'];
     });
   }
 

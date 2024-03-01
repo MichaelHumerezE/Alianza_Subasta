@@ -7,14 +7,6 @@ import { Filter } from '../interfaces/filter';
   standalone: true,
 })
 export class FilterProductPipe implements PipeTransform {
-  filters?: Filter;
-
-  ngOnChange() {
-    if (this.filters) {
-      console.log(this.filters);
-    }
-  }
-
   transform(products: Product[], ...args: string[]): Product[] {
     let filteredProducts = products;
 

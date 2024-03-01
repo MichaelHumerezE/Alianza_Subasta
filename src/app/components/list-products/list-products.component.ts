@@ -9,11 +9,14 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FilterProductPipe } from '../../pipes/filter-product.pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {PaginationInstance} from 'ngx-pagination';
+import { CountdownTimerComponent } from '../countdown-timer/countdown-timer.component';
 
 @Component({
   selector: 'app-list-products',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule, FilterProductPipe],
+  imports: [RouterLink, CommonModule, FormsModule, FilterProductPipe, NgxPaginationModule, CountdownTimerComponent],
   templateUrl: './list-products.component.html',
   styleUrl: './list-products.component.css'
 })
@@ -35,9 +38,11 @@ export class ListProductsComponent {
     year: '',
     month: '',
     sort: '',
-    state: '',
+    state: '2',
     search: ''
   };
+
+  page?: number;
 
   constructor(private productService: ProductService, public router: Router,
     private categoryService: CategoryService, private route: ActivatedRoute){}

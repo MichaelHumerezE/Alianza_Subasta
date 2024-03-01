@@ -13,7 +13,16 @@
     </div>
     <div class="row gy-4">
       <div
-        *ngFor="let product of products"
+        *ngFor="
+          let product of products.slice(0, 8)
+            | filterProduct
+              : filters.category
+              : filters.month
+              : filters.year
+              : filters.search
+              : filters.sort
+              : filters.state
+        "
         class="col-lg-3 col-sm-6"
       >
         <div class="single_new_arrive">
@@ -37,7 +46,7 @@
           </div>
           <div class="sna_content">
             <a routerLink="/auction/{{ product.id }}/detail">
-              <h4>{{ product.commercial_name }}</h4>
+              <h4 class="product_name">{{ product.commercial_name }}</h4>
             </a>
             <div class="ratprice">
               <div class="price">
@@ -48,6 +57,7 @@
               </div>
               <div class="rating">
                 <div class="d-flex align-items-center justify-content-start">
+                  <!--
                   <div class="rating_star">
                     <span><i class="las la-star"></i></span>
                     <span><i class="las la-star"></i></span>
@@ -56,6 +66,10 @@
                     <span><i class="las la-star"></i></span>
                   </div>
                   <p class="rating_count">(150)</p>
+                  -->
+                  <app-countdown-timer
+                    [endDate]="product.end_date"
+                  ></app-countdown-timer>
                 </div>
               </div>
             </div>

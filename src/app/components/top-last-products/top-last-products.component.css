@@ -1,0 +1,6 @@
+.product_name {
+    /* Truncar el texto y agregar puntos suspensivos (...) si es necesario */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }

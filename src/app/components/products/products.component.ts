@@ -10,11 +10,12 @@ import { Filter } from '../../interfaces/filter';
 import { CommonModule } from '@angular/common';
 import { FilterProductPipe } from '../../pipes/filter-product.pipe';
 import { FormsModule } from '@angular/forms';
+import { CountdownTimerComponent } from '../countdown-timer/countdown-timer.component';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [RouterLink, SelectComponent, CommonModule, FilterProductPipe, FormsModule],
+  imports: [RouterLink, SelectComponent, CommonModule, FilterProductPipe, FormsModule, CountdownTimerComponent],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
@@ -36,7 +37,7 @@ export class ProductsComponent {
     year: '',
     month: '',
     sort: '',
-    state: '',
+    state: '2',
     search: ''
   };
 

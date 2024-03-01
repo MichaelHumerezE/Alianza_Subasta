@@ -47,7 +47,8 @@ export class HeaderComponent {
     this.proposer = this.authService.proposer;
     this.loadProducts();
     this.loadCategories();
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', this.productsProposer);
+    this.loadProductsProposer();
+    console.log(this.productsProposer);
   }
 
   loadCategories() {
@@ -67,9 +68,6 @@ export class HeaderComponent {
       next: (productsData) => {
         this.products = productsData;
       },
-      error: (errorData) => {
-        console.error(errorData);
-      }
     });
   }
 
@@ -79,9 +77,6 @@ export class HeaderComponent {
       next: (productsData) => {
         this.productsProposer = productsData;
       },
-      error: (errorData) => {
-        console.error(errorData);
-      }
     });
   }
 
