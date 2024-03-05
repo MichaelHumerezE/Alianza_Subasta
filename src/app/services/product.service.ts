@@ -1,17 +1,18 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable, model } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { Product } from '../interfaces/product';
 import { URL_BACKEND } from '../config/config';
 import { DataToInterfaceService } from './data-to-interface.service';
 import { Response } from '../interfaces/response';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  constructor(private http: HttpClient, private converter: DataToInterfaceService) { }
+  constructor(private http: HttpClient, private converter: DataToInterfaceService, private authService: AuthService) { }
 
   getProducts(): Observable<Product[]> {
     let URL = URL_BACKEND + 'bidding/get_biddings';
@@ -43,7 +44,7 @@ export class ProductService {
 
   getProductsByIdProposer(formData: FormData): Observable<Product[]> {
     let URL = URL_BACKEND + 'bidding/get_biddings_article_by_proposer';
-    return this.http.post<any>(URL, formData).pipe(map((response: Response) => {
+    return this.http.post<any>(URL, formData, this.getHttpHeaders()).pipe(map((response: Response) => {
       console.log(response);
       return this.converter.dataToInterfaceProducts(response.data!);
     }),
@@ -54,6 +55,22 @@ export class ProductService {
         return this.converter.dataToInterfaceProduct(response);
       }),
         catchError(this.handleError));*/
+  }
+
+  getHttpHeaders() {
+    // Obtener el token de sessionStorage
+    const tokenConComillas = this.authService.token;
+
+    // Quitar las comillas del token si están presentes
+    const token = tokenConComillas
+      ? tokenConComillas.replace(/^"(.*)"$/, '$1')
+      : '';
+
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      }),
+    };
   }
 
   private handleError(error: HttpErrorResponse) {

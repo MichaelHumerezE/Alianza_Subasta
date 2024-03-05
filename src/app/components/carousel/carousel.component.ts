@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CarouselModule } from '@coreui/angular';
 import { URL_BACKEND_IMAGES } from '../../config/config';
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'app-carousel',
@@ -13,7 +14,10 @@ import { URL_BACKEND_IMAGES } from '../../config/config';
 })
 export class CarouselComponent {
 
-  @Input() files: string[] = [];
+  
+  @Input() product?: Product;;
+  
+  files: string[] = [];
 
   slides: any[] = [];
   url_base = URL_BACKEND_IMAGES + 'article/';
@@ -21,12 +25,23 @@ export class CarouselComponent {
   constructor() { }
 
   ngOnInit(): void {
+    this.loadFiles();
       this.slides = this.files.map((file, index) => ({
         id: index,
         src: this.url_base + file,
         title: '',
         subtitle: '',
       }));
-      console.log(this.slides);
+  }
+
+  ngOnChanges(){
+    if(this.product){
+      this.loadFiles();
+    }
+  }
+
+  loadFiles()
+  {
+    this.files = this.product?.images??[];
   }
 }

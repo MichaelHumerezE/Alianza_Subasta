@@ -1,0 +1,74 @@
+<!-- download app -->
+<section class="download_wrap section_padding_b">
+    <div class="container">
+      <div class="download_bg">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="download_left mt-3">
+              <img
+                loading="lazy"
+                src="assets/images/alianza/3.jpg"
+                class="mt-3 w-100"
+                style="width: 150px; height: 350px;"
+              />
+            </div>
+          </div>
+          <div class="col-lg-5 px-5 px-lg-0">
+            <div class="download_cont">
+              <h2 class="title_2 text-capitalize mb-3">
+                Recuperar Contraseña
+              </h2>
+              <p class="mb-4">
+                Escribe tu correo electrónico
+                <br class="d-none d-xl-block" />
+                para poder enviarte un enlace donde podras modificar tu contraseña
+              </p>
+              <form [formGroup]="emailForm" class="subscribe_form">
+                <input type="text" placeholder="Correo Electrónico" formControlName="email" />
+                <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
+                <div
+                *ngIf="
+                  emailForm.get('email')?.invalid &&
+                  (emailForm.get('email')?.dirty ||
+                  emailForm.get('email')?.touched)
+                "
+              >
+                <div
+                  *ngIf="emailForm.get('email')?.errors?.['required']"
+                  class="error text-danger"
+                >
+                  Ingrese su dirección de Correo Electrónico
+                </div>
+                <div
+                  *ngIf="emailForm.get('email')?.errors?.['email']"
+                  class="error text-danger"
+                >
+                  El Correo Electrónico no es válido
+                </div>
+              </div>
+                <button type="submit" (click)="sendEmail()">Enviar</button>
+              </form>
+              <div class="download_links">
+                <a class="me-3">
+                  <img
+                    loading="lazy"
+                    src="assets/images/alianza/logo_2_orig.png"
+                    alt="download"
+                  />
+                </a>
+                <!--
+                <a href="#">
+                  <img
+                    loading="lazy"
+                    src="assets/images/download-2.png"
+                    alt="download"
+                  />
+                </a>}
+                -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

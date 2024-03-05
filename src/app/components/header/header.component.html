@@ -6,8 +6,9 @@
         <a routerLink="/">
           <img
             loading="lazy"
-            src="assets/images/alianza/logo_2.svg"
+            src="assets/images/alianza/logo_2.png"
             alt="logo"
+            style="width: 100px; height: 50px;"
           />
         </a>
       </div>
@@ -653,7 +654,7 @@
             <span class="icon">
               <i class="icon-cart"></i>
             </span>
-            <span class="icon_text">Cart</span>
+            <span class="icon_text">Mis Subastas</span>
             <span class="pops">{{ productsProposer.length }}</span>
           </a>
           <div class="shopcart_dropdown">
@@ -710,7 +711,84 @@
               <a
                 routerLink="/auction/proposer"
                 class="default_btn w-50 text_xs px-1"
-                >Ver Historial</a
+                >Subastas</a
+              >
+              <!--
+              <a
+                href="checkout.html"
+                class="default_btn second ms-3 w-50 text_xs px-1"
+                >Checkout</a
+              >
+              -->
+            </div>
+          </div>
+        </div>
+        <div class="shopcart">
+          <a
+            href="shopping-cart.html"
+            class="icon_wrp text-center d-none d-lg-block"
+          >
+            <span class="icon">
+              <i class="fa-solid fa-envelope"></i>
+            </span>
+            <span class="icon_text">Notificaciones</span>
+            <span class="pops">{{ productsProposer.length }}</span>
+          </a>
+          <div class="shopcart_dropdown">
+            <div class="cart_droptitle">
+              <h4 class="text_lg">{{ productsProposer.length }} Items</h4>
+            </div>
+            <div class="cartsdrop_wrap">
+              @for (productProposer of productsProposer; track $index) {
+              <a routerLink="/auction/{{productProposer.id}}/detail" class="single_cartdrop mb-3">
+                <!--
+                <span class="remove_cart"><i class="las la-times"></i></span>
+                -->
+                <div class="cartdrop_img">
+                  <img
+                    loading="lazy"
+                    src="{{url_base + productProposer.images[0]}}"
+                    alt="product"
+                  />
+                </div>
+                <div class="cartdrop_cont">
+                  <h5 class="text_lg mb-0 default_link">{{productProposer.commercial_name}}</h5>
+                  <p class="mb-0 text_xs text_p">
+                    Iniciado <span class="ms-2">{{productProposer.current_bid}} Bs</span>
+                  </p>
+                </div>
+              </a>
+              }
+              <!--
+              <a href="product-view.html" class="single_cartdrop">
+                <span class="remove_cart"><i class="las la-times"></i></span>
+                <div class="cartdrop_img">
+                  <img
+                    loading="lazy"
+                    src="assets/images/headphone-2.png"
+                    alt="product"
+                  />
+                </div>
+                <div class="cartdrop_cont">
+                  <h5 class="text_lg mb-0 default_link">Men casual shoes</h5>
+                  <p class="mb-0 text_xs text_p">
+                    x1 <span class="ms-2">$450</span>
+                  </p>
+                </div>
+              </a>
+              -->
+            </div>
+            <!--
+            <div class="total_cartdrop">
+              <h4 class="text_lg text-uppercase mb-0">Sub Total:</h4>
+              <h4 class="text_lg mb-0 ms-2">$980.00</h4>
+            </div>
+            -->
+            <div class="cartdrop_footer d-flex mt-3">
+              <a
+                routerLink="/auction/proposer"
+                class="default_btn w-50 text_xs px-1"
+                >Notificaciones</a
               >
               <!--
               <a
@@ -748,7 +826,7 @@
               </a>
               <a routerLink="/auction/proposer">
                 <i class="las la-gift"></i>
-                Historial
+                Mis Subastas
               </a>
               <a (click)="logout()" routerLink="/login">
                 <i class="las la-power-off"></i>

@@ -66,7 +66,7 @@ export class FormRegisterComponent {
     if (this.files.length == 2) {
       const formData = this.loadFormData();
       this.authService.register(formData).subscribe({
-        next: (response: Response) => {
+        next: (response) => {
           console.log('Respuesta de la API-REGISTER:', response);
           this.message.title = 'Enviado';
           this.message.text =

@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SendCorreoComponent } from './send-correo.component';
+import { FormSetPasswordComponent } from './form-set-password.component';
 
-describe('SendCorreoComponent', () => {
-  let component: SendCorreoComponent;
-  let fixture: ComponentFixture<SendCorreoComponent>;
+describe('FormSetPasswordComponent', () => {
+  let component: FormSetPasswordComponent;
+  let fixture: ComponentFixture<FormSetPasswordComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SendCorreoComponent]
+      imports: [FormSetPasswordComponent]
     })
     .compileComponents();
     
-    fixture = TestBed.createComponent(SendCorreoComponent);
+    fixture = TestBed.createComponent(FormSetPasswordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

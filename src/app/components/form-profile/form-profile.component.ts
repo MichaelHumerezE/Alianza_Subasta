@@ -92,6 +92,7 @@ export class FormProfileComponent {
         console.log('Respuesta de la API - getProposerById:', response);
         if (response.success) {
           this.proposer = this.authService.getProposerLocal();
+          console.log('22222');
         } else {
           this.message.title = '¡Token Expirado!';
           this.message.text = 'Por favor vuelva a iniciar sesión.';
@@ -102,7 +103,7 @@ export class FormProfileComponent {
         }
       },
       error: (error) => {
-        console.log('Error de la API-REGISTER:', error);
+        console.log('Error de la API-getProposerById:', error);
         this.message.title = 'Error!';
         this.message.text =
           'Error al comunicarse con el servidor, intentelo de nuevo.';

@@ -1,22 +1,38 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataToInterfaceService } from './data-to-interface.service';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { URL_BACKEND } from '../config/config';
 import { Offer } from '../interfaces/offer';
 import { Response } from '../interfaces/response';
+import { Message } from '../interfaces/message';
+import { SweetAlert2Service } from './sweet-alert-2.service';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class OfferService {
+  message: Message = {
+    title: '',
+    text: '',
+    icon: 'info',
+  };
+
   constructor(
     private http: HttpClient,
-    private converter: DataToInterfaceService
+    private converter: DataToInterfaceService,
+    private alert: SweetAlert2Service,
+    private authService: AuthService
   ) {}
 
   getOffersByProduct(formData: FormData): Observable<Offer[]> {
     let URL = URL_BACKEND + 'article/get_offers';
+    this.authService.getHttpHeaders();
     return this.http.post<any>(URL, formData).pipe(
       map((response: Response) => {
         return this.converter.dataToInterfaceOffers(response.data!);
@@ -25,15 +41,26 @@ export class OfferService {
     );
   }
 
-  registerOffer(formData: FormData): Observable<Offer> {
-    let URL = URL_BACKEND + 'bidding/store_offers';
-    return this.http.post<any>(URL, formData).pipe(
-      map((response: Response) => {
-        console.log('Respuesta de la API - registerOffer: ', response);
-        return this.converter.dataToInterfaceOffer(response.data!);
-      }),
-      catchError(this.handleError)
-    );
+  registerOffer(formData: FormData): Observable<any> {
+    let URL = URL_BACKEND + 'store_offersbidding/';
+    return this.http
+      .post<any>(URL, formData, this.authService.getHttpHeaders())
+      .pipe(
+        map((response: Response) => {
+          console.log('Respuesta de la API - registerOffer: ', response);
+          if (response.success) {
+            this.message.title = 'Éxito';
+            this.message.text = 'Oferta Registrada Correctamente';
+            this.message.icon = 'success';
+          } else {
+            this.message.title = 'Error!';
+            this.message.text = response.message ?? '';
+            this.message.icon = 'error';
+          }
+          this.alert.viewMessage(this.message);
+        }),
+        catchError(this.handleError)
+      );
   }
 
   private handleError(error: HttpErrorResponse) {

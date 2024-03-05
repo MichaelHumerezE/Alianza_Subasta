@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, throwError } from 'rxjs';
 import { URL_BACKEND } from '../config/config';
@@ -21,11 +21,12 @@ export class AuthService {
     this.loadStorage();
   }
 
-  loadStorage(){
-    if(sessionStorage.getItem('token') && sessionStorage.getItem('proposer')){
+  loadStorage() {
+    if (sessionStorage.getItem('token') && sessionStorage.getItem('proposer')) {
+      console.log('Si hay token');
       this.proposer = JSON.parse(sessionStorage.getItem('proposer')!);
       this.token = sessionStorage.getItem('token');
-    }else{
+    } else {
       this.logout();
     }
   }
@@ -54,7 +55,9 @@ export class AuthService {
   saveSessionStorage(response: any) {
     this.proposer = this.converter.dataToInterfaceProposer(response.data);
     this.token = response.token;
-    sessionStorage.setItem('token', JSON.stringify(response.token));
+    if (this.token) {
+      sessionStorage.setItem('token', JSON.stringify(response.token));
+    }
     sessionStorage.setItem('proposer', JSON.stringify(this.proposer));
     sessionStorage.setItem('proposer_id', JSON.stringify(this.proposer.id));
   }
@@ -67,8 +70,24 @@ export class AuthService {
     sessionStorage.removeItem('proposer_id');
   }
 
-  getProposerLocal(): Proposer{
+  getProposerLocal(): Proposer {
     return this.proposer as Proposer;
+  }
+
+  getHttpHeaders() {
+    // Obtener el token de sessionStorage
+    const tokenConComillas = sessionStorage.getItem('token');
+
+    // Quitar las comillas del token si están presentes
+    const token = tokenConComillas
+      ? tokenConComillas.replace(/^"(.*)"$/, '$1')
+      : '';
+
+    return {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${token}`,
+      }),
+    };
   }
 
   private handleError(error: HttpErrorResponse) {
