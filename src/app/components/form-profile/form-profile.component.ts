@@ -25,38 +25,6 @@ import { Router } from '@angular/router';
   styleUrl: './form-profile.component.css',
 })
 export class FormProfileComponent {
-  updateForm: FormGroup = new FormGroup({
-    name: new FormControl(this.authService.proposer?.name, [
-      Validators.required,
-      Validators.minLength(3),
-    ]),
-    surname: new FormControl(this.authService.proposer?.surname, [
-      Validators.required,
-      Validators.minLength(3),
-    ]),
-    ci: new FormControl(this.authService.proposer?.ci, [
-      Validators.required,
-      Validators.minLength(6),
-      this.validateNumber,
-    ]),
-    mail: new FormControl(this.authService.proposer?.email, [
-      Validators.required,
-      Validators.email,
-    ]),
-    phone: new FormControl(this.authService.proposer?.phone, [
-      Validators.required,
-      Validators.minLength(6),
-      this.validateNumber,
-    ]),
-    password: new FormControl('', [Validators.minLength(6)]),
-    new_password: new FormControl('', [Validators.minLength(6)]),
-  });
-
-  message: Message = {
-    title: '',
-    text: '',
-    icon: 'info',
-  };
 
   files: File[] = [];
 
@@ -65,6 +33,39 @@ export class FormProfileComponent {
   states_verify = PROPOSER_VERIFY;
 
   proposer?: Proposer;
+
+  message: Message = {
+    title: '',
+    text: '',
+    icon: 'info',
+  };
+
+  updateForm: FormGroup = new FormGroup({
+    name: new FormControl(this.proposer?.name, [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    surname: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    ci: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+      this.validateNumber,
+    ]),
+    mail: new FormControl('', [
+      Validators.required,
+      Validators.email,
+    ]),
+    phone: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+      this.validateNumber,
+    ]),
+    password: new FormControl('', [Validators.minLength(6)]),
+    new_password: new FormControl('', [Validators.minLength(6)]),
+  });
 
   constructor(
     private alert: SweetAlert2Service,
@@ -75,6 +76,7 @@ export class FormProfileComponent {
 
   ngOnInit() {
     this.loadProposer();
+    console.log(this.proposer);
   }
 
   validateNumber(control: AbstractControl): ValidationErrors | null {
@@ -92,7 +94,6 @@ export class FormProfileComponent {
         console.log('Respuesta de la API - getProposerById:', response);
         if (response.success) {
           this.proposer = this.authService.getProposerLocal();
-          console.log('22222');
         } else {
           this.message.title = '¡Token Expirado!';
           this.message.text = 'Por favor vuelva a iniciar sesión.';
@@ -117,30 +118,10 @@ export class FormProfileComponent {
     const formData = this.loadFormDataUpdate();
     this.proposerService.updateProposer(formData).subscribe({
       next: (response) => {
-        console.log('Respuesta de la API - updateProposer:', response);
         if (response.success) {
-          this.message.title = 'Éxito';
-          this.message.text = 'Información Actualiazada Correctamente';
-          this.message.icon = 'success';
-          this.alert.viewMessage(this.message);
           this.loadProposer();
-        } else {
-          this.message.title = '¡Token Expirado!';
-          this.message.text =
-            response.message + ', por favor vuelva a iniciar sesión.';
-          this.message.icon = 'warning';
-          this.authService.logout();
-          this.router;
         }
-      },
-      error: (error) => {
-        console.log('Error de la API - updateProposer:', error);
-        this.message.title = 'Error!';
-        this.message.text =
-          'Error al comunicarse con el servidor, intentelo de nuevo.';
-        this.message.icon = 'error';
-        this.alert.viewMessage(this.message);
-      },
+      }
     });
   }
 

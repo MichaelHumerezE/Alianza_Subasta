@@ -5,49 +5,45 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-              <img
-                src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                alt="Admin"
-                class="rounded-circle"
-                width="150"
-              />
+              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle"
+                width="150" />
               <div class="mt-3">
                 <h4>{{proposer?.name}}</h4>
                 <p class="text-secondary mb-1">{{proposer?.surname}}</p>
                 <p class="text-muted font-size-sm">
-                 Contacto: {{proposer?.phone}} <br>
-                 Email:  {{proposer?.email}}
+                  Contacto: {{proposer?.phone}} <br>
+                  Email: {{proposer?.email}}
                 </p>
                 <div [ngSwitch]="proposer?.verify?.toString()">
-                    <div *ngSwitchCase="'0'">
-                      <button class="btn btn-danger px-4 py-2 rounded justify-end text-white mr-3 d-block">
-                        <i class="fa fa-user-xmark"></i>
-                        {{ states_verify[proposer?.verify!] }}
-                      </button>
-                    </div>
-                    <div *ngSwitchCase="'1'">
-                      <button class="btn btn-success px-4 py-2 rounded justify-end text-white mr-3 d-block">
-                        <i class="fa fa-user-check"></i>
-                        {{ states_verify[proposer?.verify!] }}
-                      </button>
-                    </div>
-                    <div *ngSwitchCase="'2'">
-                      <button class="btn btn-danger px-4 py-2 rounded justify-end text-white mr-3 d-block">
-                        <i class="fa-solid fa-user-xmark"></i>
-                        {{ states_verify[proposer?.verify!] }}
-                      </button>
-                    </div>
-                    <div *ngSwitchCase="'3'">
-                      <button class="btn btn-warning px-4 py-2 rounded justify-end text-white mr-3 d-block">
-                        <i class="fa-solid fa-user-slash"></i>
-                        {{ states_verify[proposer?.verify!] }}
-                      </button>
-                    </div>
-                    <div *ngSwitchDefault>
-                      <i class="fa-solid fa-info"></i>Default: {{ states_verify[proposer?.verify!] }}
-                    </div>
+                  <div *ngSwitchCase="'0'">
+                    <button class="btn btn-danger px-4 py-2 rounded justify-end text-white mr-3 d-block">
+                      <i class="fa fa-user-xmark"></i>
+                      {{ states_verify[proposer?.verify!] }}
+                    </button>
                   </div>
-                  
+                  <div *ngSwitchCase="'1'">
+                    <button class="btn btn-success px-4 py-2 rounded justify-end text-white mr-3 d-block">
+                      <i class="fa fa-user-check"></i>
+                      {{ states_verify[proposer?.verify!] }}
+                    </button>
+                  </div>
+                  <div *ngSwitchCase="'2'">
+                    <button class="btn btn-danger px-4 py-2 rounded justify-end text-white mr-3 d-block">
+                      <i class="fa-solid fa-user-xmark"></i>
+                      {{ states_verify[proposer?.verify!] }}
+                    </button>
+                  </div>
+                  <div *ngSwitchCase="'3'">
+                    <button class="btn btn-warning px-4 py-2 rounded justify-end text-white mr-3 d-block">
+                      <i class="fa-solid fa-user-slash"></i>
+                      {{ states_verify[proposer?.verify!] }}
+                    </button>
+                  </div>
+                  <div *ngSwitchDefault>
+                    <i class="fa-solid fa-info"></i>Default: {{ states_verify[proposer?.verify!] }}
+                  </div>
+                </div>
+
                 <!--
                 <button class="btn btn-primary">Follow</button>
                 <button class="btn btn-outline-primary">Message</button>
@@ -58,6 +54,17 @@
         </div>
         <div class="card mt-3">
           <ul class="list-group list-group-flush">
+            <div class="card-body">
+              <h6 class="d-flex align-items-center mb-3">
+                <i class="material-icons text-info mr-2"></i>Actuales Fotos del
+                CI
+              </h6>
+              <div class="d-flex justify-content-center align-items-center">
+              <img src="{{ url_base + proposer?.url_img_1 }}" alt="Admin" class="img-fluid" />
+            </div>
+            </div>
+
+            <!--
             <li
               class="list-group-item d-flex justify-content-between align-items-center flex-wrap"
             >
@@ -177,17 +184,13 @@
               </h6>
               <span class="text-secondary">bootdey</span>
             </li>
+            -->
           </ul>
         </div>
         <div class="card mt-3">
           <div class="sm-6 mb-3">
-            <div class="card-body">
-              <h6 class="d-flex align-items-center mb-3">
-                <i class="material-icons text-info mr-2"></i>Actuales Fotos del
-                CI
-              </h6>
-              <img src="{{ url_base + proposer?.url_img_1 }}" alt="Admin" width="150" />
-              <img src="{{ url_base + proposer?.url_img_2 }}" alt="Admin" width="150" />
+            <div class="card-body d-flex justify-content-center align-items-center">
+              <img src="{{ url_base + proposer?.url_img_2 }}" alt="Admin" class="img-fluid" />
             </div>
           </div>
         </div>
@@ -201,31 +204,19 @@
                   <h6 class="mb-0">Nombre</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input
-                    type="text"
-                    class="form-control border-0 outline-none"
-                    placeholder="Ingrese su Nombre"
-                    formControlName="name"
-                  />
+                  <input type="text" class="form-control border-0 outline-none" placeholder="Ingrese su Nombre"
+                    formControlName="name" [ngModel]="proposer?.name" />
                   <hr class="mt-0" />
                   <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       updateForm.get('name')?.invalid &&
                       (updateForm.get('name')?.dirty ||
                         updateForm.get('name')?.touched)
-                    "
-                  >
-                    <div
-                      *ngIf="updateForm.get('name')?.errors?.['required']"
-                      class="error text-red-600"
-                    >
+                    ">
+                    <div *ngIf="updateForm.get('name')?.errors?.['required']" class="error text-red-600">
                       Ingrese su Nombre
                     </div>
-                    <div
-                      *ngIf="updateForm.get('name')?.errors?.['minlength']"
-                      class="error text-red-600"
-                    >
+                    <div *ngIf="updateForm.get('name')?.errors?.['minlength']" class="error text-red-600">
                       El nombre debe tener al menos 3 caracteres
                     </div>
                   </div>
@@ -237,31 +228,19 @@
                   <h6 class="mb-0">Apellido</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input
-                    type="text"
-                    class="form-control border-0 outline-none"
-                    placeholder="Ingrese su Apellido"
-                    formControlName="surname"
-                  />
+                  <input type="text" class="form-control border-0 outline-none" placeholder="Ingrese su Apellido"
+                    formControlName="surname" [ngModel]="proposer?.surname" />
                   <hr class="mt-0" />
                   <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       updateForm.get('surname')?.invalid &&
                       (updateForm.get('surname')?.dirty ||
                         updateForm.get('surname')?.touched)
-                    "
-                  >
-                    <div
-                      *ngIf="updateForm.get('surname')?.errors?.['required']"
-                      class="error text-red-600"
-                    >
+                    ">
+                    <div *ngIf="updateForm.get('surname')?.errors?.['required']" class="error text-red-600">
                       Ingrese su Apellido
                     </div>
-                    <div
-                      *ngIf="updateForm.get('surname')?.errors?.['minlength']"
-                      class="error text-red-600"
-                    >
+                    <div *ngIf="updateForm.get('surname')?.errors?.['minlength']" class="error text-red-600">
                       El Apellido debe tener al menos 4 caractéres
                     </div>
                   </div>
@@ -273,37 +252,22 @@
                   <h6 class="mb-0">CI</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input
-                    type="text"
-                    class="form-control border-0 outline-none"
-                    placeholder="Ingrese su CI"
-                    formControlName="ci"
-                  />
+                  <input type="text" class="form-control border-0 outline-none" placeholder="Ingrese su CI"
+                    formControlName="ci" [ngModel]="proposer?.ci" />
                   <hr class="mt-0" />
                   <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       updateForm.get('ci')?.invalid &&
                       (updateForm.get('ci')?.dirty ||
                         updateForm.get('ci')?.touched)
-                    "
-                  >
-                    <div
-                      *ngIf="updateForm.get('ci')?.errors?.['required']"
-                      class="error text-red-600"
-                    >
+                    ">
+                    <div *ngIf="updateForm.get('ci')?.errors?.['required']" class="error text-red-600">
                       Ingrese su número de carnet
                     </div>
-                    <div
-                      *ngIf="updateForm.get('ci')?.errors?.['minlength']"
-                      class="error text-red-600"
-                    >
+                    <div *ngIf="updateForm.get('ci')?.errors?.['minlength']" class="error text-red-600">
                       El Número de Carnet debe tener al menos 6 dígitos
                     </div>
-                    <div
-                      *ngIf="updateForm.get('ci')?.errors?.['notANumber']"
-                      class="error text-red-600"
-                    >
+                    <div *ngIf="updateForm.get('ci')?.errors?.['notANumber']" class="error text-red-600">
                       Este campo solo permite números
                     </div>
                   </div>
@@ -315,37 +279,22 @@
                   <h6 class="mb-0">Telefono</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input
-                    type="text"
-                    class="form-control border-0 outline-none"
-                    placeholder="Ingrese su Telefono"
-                    formControlName="phone"
-                  />
+                  <input type="text" class="form-control border-0 outline-none" placeholder="Ingrese su Telefono"
+                    formControlName="phone" [ngModel]="proposer?.phone" />
                   <hr class="mt-0" />
                   <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       updateForm.get('phone')?.invalid &&
                       (updateForm.get('phone')?.dirty ||
                         updateForm.get('phone')?.touched)
-                    "
-                  >
-                    <div
-                      *ngIf="updateForm.get('phone')?.errors?.['required']"
-                      class="error text-red-600"
-                    >
+                    ">
+                    <div *ngIf="updateForm.get('phone')?.errors?.['required']" class="error text-red-600">
                       Ingrese su Número de Telefono
                     </div>
-                    <div
-                      *ngIf="updateForm.get('phone')?.errors?.['minlength']"
-                      class="error text-red-600"
-                    >
+                    <div *ngIf="updateForm.get('phone')?.errors?.['minlength']" class="error text-red-600">
                       El Número de Telefono debe tener al menos 6 dígitos
                     </div>
-                    <div
-                      *ngIf="updateForm.get('phone')?.errors?.['notANumber']"
-                      class="error text-red-600"
-                    >
+                    <div *ngIf="updateForm.get('phone')?.errors?.['notANumber']" class="error text-red-600">
                       Este campo solo permite números
                     </div>
                   </div>
@@ -357,31 +306,19 @@
                   <h6 class="mb-0">Email</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input
-                    type="email"
-                    class="form-control border-0 outline-none"
-                    placeholder="Ingrese su Email"
-                    formControlName="mail"
-                  />
+                  <input type="email" class="form-control border-0 outline-none" placeholder="Ingrese su Email"
+                    formControlName="mail" [ngModel]="proposer?.email" />
                   <hr class="mt-0" />
                   <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       updateForm.get('mail')?.invalid &&
                       (updateForm.get('mail')?.dirty ||
                         updateForm.get('mail')?.touched)
-                    "
-                  >
-                    <div
-                      *ngIf="updateForm.get('mail')?.errors?.['required']"
-                      class="error text-red-600"
-                    >
+                    ">
+                    <div *ngIf="updateForm.get('mail')?.errors?.['required']" class="error text-red-600">
                       Ingrese su dirección de Correo Electrónico
                     </div>
-                    <div
-                      *ngIf="updateForm.get('mail')?.errors?.['email']"
-                      class="error text-red-600"
-                    >
+                    <div *ngIf="updateForm.get('mail')?.errors?.['email']" class="error text-red-600">
                       El Correo Electrónico no es válido
                     </div>
                   </div>
@@ -393,25 +330,16 @@
                   <h6 class="mb-0">Contraseña</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input
-                    type="password"
-                    class="form-control border-0 outline-none"
-                    placeholder="Ingrese su Contraseña Actual"
-                    formControlName="password"
-                  />
+                  <input type="password" class="form-control border-0 outline-none"
+                    placeholder="Ingrese su Contraseña Actual" formControlName="password" />
                   <hr class="mt-0" />
                   <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       updateForm.get('password')?.invalid &&
                       (updateForm.get('password')?.dirty ||
                         updateForm.get('password')?.touched)
-                    "
-                  >
-                    <div
-                      *ngIf="updateForm.get('password')?.errors?.['minlength']"
-                      class="error text-red-600"
-                    >
+                    ">
+                    <div *ngIf="updateForm.get('password')?.errors?.['minlength']" class="error text-red-600">
                       La Contraseña debe tener al menos 6 caracteres
                     </div>
                   </div>
@@ -424,25 +352,16 @@
                   <h6 class="mb-0">Nueva Contraseña</h6>
                 </div>
                 <div class="col-sm-9 text-secondary">
-                  <input
-                    type="password"
-                    class="form-control border-0 outline-none"
-                    placeholder="Ingrese su Nueva Contraseña"
-                    formControlName="new_password"
-                  />
+                  <input type="password" class="form-control border-0 outline-none"
+                    placeholder="Ingrese su Nueva Contraseña" formControlName="new_password" />
                   <hr class="mt-0" />
                   <!-- Mostrar mensaje de error si el campo es inválido y se ha tocado -->
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       updateForm.get('new_password')?.invalid &&
                       (updateForm.get('new_password')?.dirty ||
                         updateForm.get('new_password')?.touched)
-                    "
-                  >
-                    <div
-                      *ngIf="updateForm.get('new_password')?.errors?.['minlength']"
-                      class="error text-red-600"
-                    >
+                    ">
+                    <div *ngIf="updateForm.get('new_password')?.errors?.['minlength']" class="error text-red-600">
                       La Contraseña debe tener al menos 6 caracteres
                     </div>
                   </div>
@@ -451,10 +370,7 @@
               <hr />
               <div class="row">
                 <div class="col-sm-12">
-                  <button
-                    class="default_btn xs_btn rounded px-4 d-block w-100"
-                    (click)="updateProposer()"
-                  >
+                  <button class="default_btn xs_btn rounded px-4 d-block w-100" (click)="updateProposer()">
                     Actualizar
                   </button>
                 </div>
@@ -471,9 +387,7 @@
                   <i class="material-icons text-info mr-2"></i>Nuevas Fotos del
                   CI
                 </h6>
-                <app-img-drop-zone
-                  (fileChange)="files = $event"
-                ></app-img-drop-zone>
+                <app-img-drop-zone (fileChange)="files = $event"></app-img-drop-zone>
               </div>
             </div>
           </div>

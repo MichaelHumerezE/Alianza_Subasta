@@ -19,6 +19,7 @@ import { AuthService } from '../../services/auth.service';
 import { AttributesComponent } from '../attributes/attributes.component';
 import { Subscription } from 'rxjs';
 import { CountdownTimerComponent } from '../countdown-timer/countdown-timer.component';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-detail-product',
@@ -69,6 +70,9 @@ export class DetailProductComponent {
       this.id_auction = params['id_auction'];
       this.loadProduct();
     });
+    interval(10000).subscribe(() => {
+      this.loadProduct();
+    });
   }
 
   loadProduct() {
@@ -92,14 +96,10 @@ export class DetailProductComponent {
     if (
       Number(this.offerForm.get('proposer_offer')?.value) >= this.minimum_bid!
     ) {
-      if (this.verifyState()) {
+      if (this.verifyStateProduct() && this.verifyStateProposer()) {
         const formData = this.loadFormData();
         this.offerService.registerOffer(formData).subscribe({
           next: (attributesData) => {
-            this.message.title = 'Enviado';
-            this.message.text = 'Datos Correctos.';
-            this.message.icon = 'success';
-            this.alert.viewMessage(this.message);
             this.loadProduct();
           },
         });
@@ -121,10 +121,21 @@ export class DetailProductComponent {
     return formData;
   }
 
-  verifyState(): boolean {
+  verifyStateProduct(): boolean {
     if (this.product?.state != 2) {
       this.message.title = '¡No Disponible!';
       this.message.text = 'Producto ya no disponible para la subasta';
+      this.message.icon = 'warning';
+      this.alert.viewMessage(this.message);
+      return false;
+    }
+    return true;
+  }
+
+  verifyStateProposer(): boolean {
+    if (this.authService?.getProposerLocal().verify != 1) {
+      this.message.title = '¡No Permitido!';
+      this.message.text = 'Su cuenta no esta disponible para enviar pujas a las subastas, ir a su perfil y verificar su estado';
       this.message.icon = 'warning';
       this.alert.viewMessage(this.message);
       return false;

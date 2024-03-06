@@ -38,7 +38,7 @@
             <li>
               <a
                 routerLink="/auction/category/{{ category.name.toLowerCase() }}"
-                >{{ category.name }}
+                >{{ category.name.toLowerCase() }}
               </a>
             </li>
             }
@@ -648,7 +648,7 @@
         @if(proposer){
         <div class="shopcart">
           <a
-            href="shopping-cart.html"
+            routerLink="/auction/proposer"
             class="icon_wrp text-center d-none d-lg-block"
           >
             <span class="icon">
@@ -725,7 +725,7 @@
         </div>
         <div class="shopcart">
           <a
-            href="shopping-cart.html"
+          routerLink="/notification"
             class="icon_wrp text-center d-none d-lg-block"
           >
             <span class="icon">
@@ -786,7 +786,7 @@
             -->
             <div class="cartdrop_footer d-flex mt-3">
               <a
-                routerLink="/auction/proposer"
+                routerLink="/notification"
                 class="default_btn w-50 text_xs px-1"
                 >Notificaciones</a
               >
@@ -984,7 +984,9 @@
               {{ productProposer.commercial_name }}
             </h5>
             <p class="mb-0 text_xs text_p">
-              Iniciado
+              <span
+                  [style.color]="productProposer?.state?.toString() === '2' ? 'green' : '#dc3545'">{{ states[productProposer?.state!]
+                  }}</span>
               <span class="ms-2">{{ productProposer.current_bid }} Bs</span>
             </p>
           </div>
@@ -1111,11 +1113,11 @@
       </span>
     </h5>
     @for (category of categories; track $index) {
-    <a routerLink="/auction/category/{{ category.name }}" class="singlecats">
+    <a routerLink="/auction/category/{{ category.name.toLowerCase() }}" class="singlecats">
       <span class="img_wrp">
         <i class="las la-shoe-prints"></i>
       </span>
-      <span class="txt">{{ category.name }}</span>
+      <span class="txt">{{ category.name.toLowerCase() }}</span>
     </a>
     }
     <!--

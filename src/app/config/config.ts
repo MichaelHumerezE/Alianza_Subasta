@@ -40,7 +40,7 @@ export const AUCTION_STATE = [
   'Pendiente Aprobación',
   'Aprobado',
   'Iniciado',
-  'Terminado',
+  'Finalizado',
   'Finalizado',
   'Cancelado',
 ];

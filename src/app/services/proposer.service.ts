@@ -29,7 +29,7 @@ export class ProposerService {
     private converter: DataToInterfaceService,
     private alert: SweetAlert2Service,
     private router: Router
-  ) {}
+  ) { }
 
   getProposerById(formData: FormData): Observable<any> {
     let URL = URL_BACKEND + 'proposer/get_proposer_by_id';
@@ -42,7 +42,13 @@ export class ProposerService {
             console.log('PROPOSER-SERVICE (getProposerById): ', response);
             this.authService.saveSessionStorage(response);
             response.data = this.authService.proposer;
-            return response;
+          } else {
+            this.message.title = '¡Error!';
+            this.message.text = response.messages;
+            this.message.icon = 'warning';
+            this.alert.viewMessage(this.message);
+            this.authService.logout();
+            this.router.navigate(['/login']);
           }
           return response;
         }),
@@ -60,7 +66,17 @@ export class ProposerService {
           if (response.success) {
             response.token = this.authService.token;
             this.authService.saveSessionStorage(response);
+            this.message.title = 'Éxito';
+            this.message.text = 'Datos actualizados correctamente';
+            this.message.icon = 'success';
+          } else {
+            this.message.title = 'Error!';
+            this.message.text = response.messages;
+            this.message.icon = 'warning';
+            this.authService.logout();
+            this.router.navigate(['/login']);
           }
+          this.alert.viewMessage(this.message);
           return response;
         }),
         catchError(this.handleError)
@@ -71,7 +87,7 @@ export class ProposerService {
     let URL = URL_BACKEND + 'proposer/forgot_password';
     return this.http.post<Response>(URL, formData).pipe(
       map((response: Response) => {
-        console.log('PROPOSER-SERVICE (sendEmailProposer): ', response);
+        console.log('PROPOSER-SERVICE (sendEmailPasswordProposer): ', response);
         if (response.success) {
           this.message.title = 'Éxito';
           this.message.text = 'Correo electrónico enviado correctamente';
@@ -117,6 +133,7 @@ export class ProposerService {
           this.message.text = response.message ?? '';
           this.message.icon = 'error';
           this.alert.viewMessage(this.message);
+          //this.router.navigate(['/forgot-password/send-email']);
         }
       }),
       catchError(this.handleError)

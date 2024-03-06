@@ -11,6 +11,7 @@ import { CdTimerModule } from 'angular-cd-timer';
 export class CountdownTimerComponent {
   @Input() endDate?: Date;
   @Input() textColor: string = 'text-danger';
+  @Input() state: string = '';
 
   startTime?: number;
   endTime?: number;
@@ -28,6 +29,16 @@ export class CountdownTimerComponent {
   constructor() {}
 
   ngOnInit() {
+    this.loadCountdown();
+  }
+
+  ngOnChanges(){
+    if(this.endDate){
+      this.loadCountdown();
+    }
+  }
+
+  loadCountdown(){
     if (this.endDate) {
       const start = new Date();
       const end = new Date(this.endDate);

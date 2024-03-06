@@ -42,7 +42,7 @@ export class OfferService {
   }
 
   registerOffer(formData: FormData): Observable<any> {
-    let URL = URL_BACKEND + 'store_offersbidding/';
+    let URL = URL_BACKEND + 'bidding/store_offers';
     return this.http
       .post<any>(URL, formData, this.authService.getHttpHeaders())
       .pipe(
@@ -50,7 +50,7 @@ export class OfferService {
           console.log('Respuesta de la API - registerOffer: ', response);
           if (response.success) {
             this.message.title = 'Éxito';
-            this.message.text = 'Oferta Registrada Correctamente';
+            this.message.text = 'Monto Registrada Correctamente';
             this.message.icon = 'success';
           } else {
             this.message.title = 'Error!';

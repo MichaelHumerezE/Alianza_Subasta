@@ -14,34 +14,34 @@ import { Product } from '../../interfaces/product';
 })
 export class CarouselComponent {
 
-  
-  @Input() product?: Product;;
-  
+  @Input() product?: Product;
+
   files: string[] = [];
 
   slides: any[] = [];
+
   url_base = URL_BACKEND_IMAGES + 'article/';
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loadFiles();
-      this.slides = this.files.map((file, index) => ({
-        id: index,
-        src: this.url_base + file,
-        title: '',
-        subtitle: '',
-      }));
   }
 
-  ngOnChanges(){
-    if(this.product){
+  ngOnChanges() {
+    if (this.product) {
       this.loadFiles();
     }
   }
 
-  loadFiles()
-  {
-    this.files = this.product?.images??[];
+  loadFiles() {
+    this.files = this.product?.images ?? [];
+    this.slides = this.files.map((file, index) => ({
+      id: index,
+      src: this.url_base + file,
+      title: '',
+      subtitle: '',
+    }));
+    console.log(this.slides);
   }
 }

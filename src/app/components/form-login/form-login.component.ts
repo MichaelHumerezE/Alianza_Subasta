@@ -21,7 +21,7 @@ import { SweetAlert2Service } from '../../services/sweet-alert-2.service';
 })
 export class FormLoginComponent {
   loginForm: FormGroup = new FormGroup({
-    mail: new FormControl('default@gmail.com', [
+    mail: new FormControl('godofwarxv@gmail.com', [
       Validators.required,
       Validators.email,
     ]),
@@ -49,11 +49,6 @@ export class FormLoginComponent {
       next: (response: any) => {
         console.log('Respuesta de la API - LOGIN: ', response);
         if (response.success) {
-          this.loginForm.reset();
-          this.message.title = 'Enviado';
-          this.message.text = 'Datos Correctos.';
-          this.message.icon = 'success';
-          this.alert.viewMessage(this.message);
           this.router.navigateByUrl('/').then(() => {
             window.location.reload();
           });

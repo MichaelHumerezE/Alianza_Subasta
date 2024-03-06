@@ -14,11 +14,11 @@ import { ActivatedRoute } from '@angular/router';
 export class FormSetPasswordComponent {
 
   passwordForm: FormGroup = new FormGroup({
-    password: new FormControl('123456', [
+    password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
     ]),
-    password_confirmation: new FormControl('123456', [
+    password_confirmation: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
     ]),
@@ -28,26 +28,36 @@ export class FormSetPasswordComponent {
 
   constructor(private proposerService: ProposerService,
     private route: ActivatedRoute,
-    ){}
+  ) { }
 
-  ngOnInit(){
+  ngOnInit() {
     this.route.params.subscribe((params) => {
       this.hash = params['hash'];
-
+      this.validateHash();
     });
-    console.log(this.hash);
   }
 
-  setPassword(){
-    console.log(this.hash);
+  setPassword() {
     const formData = this.loadFormData();
     this.proposerService.setPasswordProposer(formData, this.hash).subscribe();
   }
 
-  loadFormData(): FormData{
+  loadFormData(): FormData {
     const formData = new FormData();
     formData.append('password', this.passwordForm.get('password')?.value);
     return formData;
   }
 
+  validateHash() {
+    this.proposerService.verifyHashPassword(this.hash).subscribe();
+  }
+
+  passwordMatchValidator() {
+    const password = this.passwordForm.get('password')?.value;
+    const confirmPassword = this.passwordForm.get('password_confirmation')?.value;
+    if (password && confirmPassword && password.value !== confirmPassword.value) {
+      return { passwordMismatch: true };
+    }
+    return null;
+  }
 }

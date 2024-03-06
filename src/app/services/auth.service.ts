@@ -5,6 +5,8 @@ import { URL_BACKEND } from '../config/config';
 import { Proposer } from '../interfaces/proposer';
 import { DataToInterfaceService } from './data-to-interface.service';
 import { Router } from '@angular/router';
+import { SweetAlert2Service } from './sweet-alert-2.service';
+import { Message } from '../interfaces/message';
 
 @Injectable({
   providedIn: 'root',
@@ -13,17 +15,23 @@ export class AuthService {
   proposer: Proposer | null = null;
   token: any = '';
 
+  message: Message = {
+    title: '',
+    text: '',
+    icon: 'info',
+  };
+
   constructor(
     private http: HttpClient,
     private converter: DataToInterfaceService,
-    private route: Router
+    private route: Router,
+    private alert: SweetAlert2Service
   ) {
     this.loadStorage();
   }
 
   loadStorage() {
     if (sessionStorage.getItem('token') && sessionStorage.getItem('proposer')) {
-      console.log('Si hay token');
       this.proposer = JSON.parse(sessionStorage.getItem('proposer')!);
       this.token = sessionStorage.getItem('token');
     } else {
@@ -33,11 +41,9 @@ export class AuthService {
 
   login(formData: FormData): Observable<any> {
     let URL = URL_BACKEND + 'proposer/login_proposer';
-    console.log('AUTH-SERVICE (login): ' + formData.get('password'));
-
     return this.http.post<any>(URL, formData).pipe(
       map((response) => {
-        console.log('AUTH-SERVICE (login): ' + response);
+        console.log('AUTH-SERVICE (login): ', response);
         if (response.success) {
           this.saveSessionStorage(response);
         }
@@ -68,6 +74,11 @@ export class AuthService {
     sessionStorage.removeItem('proposer');
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('proposer_id');
+    //message
+    this.message.title = 'Sesion Cerrada';
+    this.message.icon = 'warning';
+    this.alert.viewMessage(this.message);
+    this.route.navigate(['/login']);
   }
 
   getProposerLocal(): Proposer {

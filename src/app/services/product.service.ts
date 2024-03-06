@@ -45,7 +45,7 @@ export class ProductService {
   getProductsByIdProposer(formData: FormData): Observable<Product[]> {
     let URL = URL_BACKEND + 'bidding/get_biddings_article_by_proposer';
     return this.http.post<any>(URL, formData, this.getHttpHeaders()).pipe(map((response: Response) => {
-      console.log(response);
+      console.log('PRODUCT-SERVICE (getProductsByIdProposer): ', response);
       return this.converter.dataToInterfaceProducts(response.data!);
     }),
       catchError(this.handleError));

@@ -12,11 +12,7 @@
           @for (product of products; track $index) {
           <div class="single_shop_cart d-flex align-items-center flex-wrap">
             <div class="cart_img mb-4 mb-md-0">
-              <img
-                loading="lazy"
-                src="{{ url_base + product.images[0] }}"
-                alt="product"
-              />
+              <img loading="lazy" src="{{ url_base + product.images[0] }}" alt="product" />
             </div>
             <div class="cart_cont">
               <a routerLink="/auction/{{product.id}}/detail">
@@ -31,7 +27,10 @@
                 <i class="las la-minus"></i>
               </div>
               -->
-              <div class="form-control">Iniciado</div>
+              <div class="form-control"> <span
+                  [style.color]="product?.state?.toString() === '2' ? 'green' : '#dc3545'">{{ states[product?.state!]
+                  }}</span>
+              </div>
               <!--
               <div class="cart_qnty_btn">
                 <i class="las la-plus"></i>

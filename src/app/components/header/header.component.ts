@@ -40,15 +40,18 @@ export class HeaderComponent {
 
   url_base = URL_BACKEND_IMAGES + 'article/';
 
+  states = AUCTION_STATE;
+
   constructor(private categoryService: CategoryService, private authService: AuthService,
     private productService: ProductService) { }
 
   ngOnInit() {
-    this.proposer = this.authService.proposer;
+    this.proposer = this.authService.getProposerLocal();
     this.loadProducts();
     this.loadCategories();
-    this.loadProductsProposer();
-    console.log(this.productsProposer);
+    if (this.proposer) {
+      this.loadProductsProposer();
+    }
   }
 
   loadCategories() {
@@ -63,7 +66,7 @@ export class HeaderComponent {
     });
   }
 
-  loadProducts(){
+  loadProducts() {
     this.productService.getProducts().subscribe({
       next: (productsData) => {
         this.products = productsData;
@@ -71,7 +74,7 @@ export class HeaderComponent {
     });
   }
 
-  loadProductsProposer(){
+  loadProductsProposer() {
     const formData = this.loadFormData();
     this.productService.getProductsByIdProposer(formData).subscribe({
       next: (productsData) => {
@@ -80,14 +83,14 @@ export class HeaderComponent {
     });
   }
 
-  logout(){
+  logout() {
     this.authService.logout();
     this.proposer = null;
   }
 
-  loadFormData(){
+  loadFormData() {
     const formData = new FormData();
-    formData.append('proposer_id', this.proposer?.id??'');
+    formData.append('proposer_id', this.proposer?.id ?? '');
     return formData;
   }
 }

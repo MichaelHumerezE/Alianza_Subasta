@@ -4,11 +4,11 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="product_view_slider">
-          @if (product) {
           <div class="single_viewslider">
+            @if (product) {
             <app-carousel [product]="product"></app-carousel>
+            }
           </div>
-          }
           <!--
                     @for (image of product?.images; track $index) {
                     <div class="single_viewslider">
@@ -33,6 +33,7 @@
             <h1>{{ product?.full_name }}</h1>
             <div class="rating">
               <div class="d-flex align-items-center">
+                <!--
                 <div class="rating_star">
                   <span><i class="las la-star"></i></span>
                   <span><i class="las la-star"></i></span>
@@ -41,12 +42,13 @@
                   <span><i class="las la-star"></i></span>
                 </div>
                 <p class="rating_count">50 Reviews</p>
+              -->
               </div>
             </div>
             <div class="product_other_info">
               <p>
                 <span>Estado:</span
-                ><span class="text-green">{{ states[product?.state!] }}</span>
+                ><span [style.color]="product?.state?.toString() === '2' ? 'green' : '#dc3545'">{{ states[product?.state!] }}</span>
               </p>
               <p><span>Categoria:</span>{{ product?.category }}</p>
               <p><span>Fecha de Finalización:</span>{{ product?.end_date }}</p>
@@ -61,6 +63,7 @@
                 <app-countdown-timer
                   [textColor]="'text-light'"
                   [endDate]="product.end_date"
+                  [state]="product.state.toString()"
                 ></app-countdown-timer>
                 }
               </div>
