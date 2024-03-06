@@ -46,7 +46,7 @@ export class OfferService {
     return this.http
       .post<any>(URL, formData, this.authService.getHttpHeaders())
       .pipe(
-        map((response: Response) => {
+        map((response: any) => {
           console.log('Respuesta de la API - registerOffer: ', response);
           if (response.success) {
             this.message.title = 'Éxito';
@@ -54,7 +54,7 @@ export class OfferService {
             this.message.icon = 'success';
           } else {
             this.message.title = 'Error!';
-            this.message.text = response.message ?? '';
+            this.message.text = response.messages ?? '';
             this.message.icon = 'error';
           }
           this.alert.viewMessage(this.message);

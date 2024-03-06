@@ -16,8 +16,6 @@ export class CarouselComponent {
 
   @Input() product?: Product;
 
-  files: string[] = [];
-
   slides: any[] = [];
 
   url_base = URL_BACKEND_IMAGES + 'article/';
@@ -25,23 +23,22 @@ export class CarouselComponent {
   constructor() { }
 
   ngOnInit() {
-    this.loadFiles();
+    this.loadSlides();
   }
 
-  ngOnChanges() {
+  /*ngOnChanges() {
     if (this.product) {
-      this.loadFiles();
+      this.loadSlides();
     }
-  }
+  }*/
 
-  loadFiles() {
-    this.files = this.product?.images ?? [];
-    this.slides = this.files.map((file, index) => ({
+  loadSlides() {
+    this.slides = this.product?.images.map((image, index) => ({
       id: index,
-      src: this.url_base + file,
+      src: this.url_base + image,
       title: '',
       subtitle: '',
-    }));
+    })) || [];
     console.log(this.slides);
   }
 }

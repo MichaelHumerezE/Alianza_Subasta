@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { FilterProductPipe } from '../../pipes/filter-product.pipe';
 import { FormsModule } from '@angular/forms';
 import { CountdownTimerComponent } from '../countdown-timer/countdown-timer.component';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-products',
@@ -47,9 +48,9 @@ export class ProductsComponent {
   ngOnInit(){
     this.loadProducts();
     this.loadCategories();
-    /*setInterval(() => {
-      console.log(this.filters);
-    }, 5000);*/
+    /*interval(10000).subscribe(() => {
+      this.loadProducts();
+    });*/
   }
 
   loadProducts(){

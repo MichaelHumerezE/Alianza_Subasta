@@ -12,6 +12,7 @@ import { FilterProductPipe } from '../../pipes/filter-product.pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {PaginationInstance} from 'ngx-pagination';
 import { CountdownTimerComponent } from '../countdown-timer/countdown-timer.component';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-list-products',
@@ -51,6 +52,10 @@ export class ListProductsComponent {
     this.readParams();
     this.loadProducts();
     this.loadCategories();
+
+    /*interval(10000).subscribe(() => {
+      this.loadProducts();
+    });*/
   }
 
   loadProducts(){

@@ -16,6 +16,7 @@ import { AuthService } from '../../services/auth.service';
 import { Message } from '../../interfaces/message';
 import { Proposer } from '../../interfaces/proposer';
 import { Router } from '@angular/router';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-form-profile',
@@ -76,7 +77,9 @@ export class FormProfileComponent {
 
   ngOnInit() {
     this.loadProposer();
-    console.log(this.proposer);
+    interval(5000).subscribe(() => {
+      this.loadProposer();
+    });
   }
 
   validateNumber(control: AbstractControl): ValidationErrors | null {

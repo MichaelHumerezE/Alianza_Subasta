@@ -48,7 +48,7 @@
             <div class="product_other_info">
               <p>
                 <span>Estado:</span
-                ><span [style.color]="product?.state?.toString() === '2' ? 'green' : '#dc3545'">{{ states[product?.state!] }}</span>
+                ><span [style.color]="product?.state?.toString() === '2' ? 'green' : '#dc3545'"><b> {{ states[product?.state!] }}</b></span>
               </p>
               <p><span>Categoria:</span>{{ product?.category }}</p>
               <p><span>Fecha de Finalización:</span>{{ product?.end_date }}</p>

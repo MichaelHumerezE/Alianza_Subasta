@@ -75,10 +75,10 @@ export class AuthService {
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('proposer_id');
     //message
-    this.message.title = 'Sesion Cerrada';
-    this.message.icon = 'warning';
-    this.alert.viewMessage(this.message);
-    this.route.navigate(['/login']);
+    //his.message.title = 'Sesion Cerrada';
+    //his.message.icon = 'warning';
+    //his.alert.viewMessage(this.message);
+    //his.route.navigate(['/login']);
   }
 
   getProposerLocal(): Proposer {

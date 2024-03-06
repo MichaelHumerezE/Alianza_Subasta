@@ -124,7 +124,7 @@ export class ProposerService {
   }
 
   verifyHashPassword(hash: string) {
-    let URL = URL_BACKEND + 'proposer/change_password/' + hash;
+    let URL = URL_BACKEND + 'proposer/verify_hash/' + hash;
     return this.http.get<Response>(URL).pipe(
       map((response: Response) => {
         console.log('PROPOSER-SERVICE (verifyHashPassword): ', response);
@@ -133,7 +133,7 @@ export class ProposerService {
           this.message.text = response.message ?? '';
           this.message.icon = 'error';
           this.alert.viewMessage(this.message);
-          //this.router.navigate(['/forgot-password/send-email']);
+          this.router.navigate(['/forgot-password/send-email']);
         }
       }),
       catchError(this.handleError)

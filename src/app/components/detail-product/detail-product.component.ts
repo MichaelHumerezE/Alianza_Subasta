@@ -17,9 +17,7 @@ import { OffersComponent } from '../offers/offers.component';
 import { OfferService } from '../../services/offer.service';
 import { AuthService } from '../../services/auth.service';
 import { AttributesComponent } from '../attributes/attributes.component';
-import { Subscription } from 'rxjs';
 import { CountdownTimerComponent } from '../countdown-timer/countdown-timer.component';
-import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-detail-product',
@@ -53,8 +51,6 @@ export class DetailProductComponent {
   url_base = URL_BACKEND_IMAGES + 'article/';
   minimum_bid?: number;
 
-  routeSub?: Subscription;
-
   date = new Date();
 
   constructor(
@@ -70,9 +66,10 @@ export class DetailProductComponent {
       this.id_auction = params['id_auction'];
       this.loadProduct();
     });
-    interval(10000).subscribe(() => {
+
+    /*interval(10000).subscribe(() => {
       this.loadProduct();
-    });
+    });*/
   }
 
   loadProduct() {
@@ -101,6 +98,7 @@ export class DetailProductComponent {
         this.offerService.registerOffer(formData).subscribe({
           next: (attributesData) => {
             this.loadProduct();
+            this.offerForm.reset();
           },
         });
       }
