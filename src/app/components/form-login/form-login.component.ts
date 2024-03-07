@@ -21,11 +21,11 @@ import { SweetAlert2Service } from '../../services/sweet-alert-2.service';
 })
 export class FormLoginComponent {
   loginForm: FormGroup = new FormGroup({
-    mail: new FormControl('godofwarxv@gmail.com', [
+    mail: new FormControl('', [
       Validators.required,
       Validators.email,
     ]),
-    password: new FormControl('123456', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
   });
 
   message: Message = {

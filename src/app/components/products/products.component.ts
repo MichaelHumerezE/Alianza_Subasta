@@ -48,9 +48,9 @@ export class ProductsComponent {
   ngOnInit(){
     this.loadProducts();
     this.loadCategories();
-    /*interval(10000).subscribe(() => {
+    interval(5000).subscribe(() => {
       this.loadProducts();
-    });*/
+    });
   }
 
   loadProducts(){

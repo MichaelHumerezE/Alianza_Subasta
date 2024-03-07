@@ -18,23 +18,23 @@ import { Response } from '../../interfaces/response';
 export class FormRegisterComponent {
 
   registerForm: FormGroup = new FormGroup({
-    name: new FormControl('default', [Validators.required, Validators.minLength(3)]),
-    surname: new FormControl('default', [
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    surname: new FormControl('', [
       Validators.required,
       Validators.minLength(3),
     ]),
-    ci: new FormControl('11111111', [
+    ci: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
       this.validateNumber,
     ]),
-    email: new FormControl('default@gmail.com', [Validators.required, Validators.email]),
-    phone: new FormControl('111111111', [
+    email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
       this.validateNumber,
     ]),
-    password: new FormControl('123456', [
+    password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
     ]),

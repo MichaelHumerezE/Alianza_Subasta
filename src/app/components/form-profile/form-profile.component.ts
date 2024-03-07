@@ -73,12 +73,14 @@ export class FormProfileComponent {
     private proposerService: ProposerService,
     private authService: AuthService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadProposer();
     interval(5000).subscribe(() => {
-      this.loadProposer();
+      if (this.authService.getProposerLocal()) {
+        this.loadProposer();
+      }
     });
   }
 

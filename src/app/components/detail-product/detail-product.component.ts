@@ -18,6 +18,7 @@ import { OfferService } from '../../services/offer.service';
 import { AuthService } from '../../services/auth.service';
 import { AttributesComponent } from '../attributes/attributes.component';
 import { CountdownTimerComponent } from '../countdown-timer/countdown-timer.component';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-detail-product',
@@ -67,9 +68,9 @@ export class DetailProductComponent {
       this.loadProduct();
     });
 
-    /*interval(10000).subscribe(() => {
+    interval(5000).subscribe(() => {
       this.loadProduct();
-    });*/
+    });
   }
 
   loadProduct() {
