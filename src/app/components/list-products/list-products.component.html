@@ -403,13 +403,15 @@
                     <div class="ratprice">
                       <div class="price">
                         <span class="org_price"
-                          >{{ product.current_bid }} Bs</span
+                          >{{ product.base_price }} Bs</span
                         >
+                        <!--
                         @if(product.base_price != product.current_bid){
                         <span class="prev_price"
                           >{{ product.base_price }} Bs</span
                         >
                         }
+                        -->
                       </div>
                       <div class="rating">
                         <div
@@ -429,9 +431,9 @@
                       </div>
                       <div class="product_other_info mt-1">
                         <app-countdown-timer
-                            [endDate]="product.end_date"
-                            [state]="product.state.toString()"
-                          ></app-countdown-timer>
+                          [endDate]="product.end_date"
+                          [state]="product.state.toString()"
+                        ></app-countdown-timer>
                       </div>
                       <div class="product_other_info mt-1">
                         <p><span>Categoria:</span>{{ product?.category }}</p>
@@ -446,7 +448,7 @@
                     >
                       <button class="list_product_btn">
                         <span class="icon"><i class="fa fa-gavel"></i></span>
-                        Pujar
+                        Ofertar
                       </button>
                       <!--
                         <button class="list_product_btn wish">

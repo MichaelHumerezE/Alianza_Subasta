@@ -77,11 +77,6 @@ export class FormProfileComponent {
 
   ngOnInit() {
     this.loadProposer();
-    interval(5000).subscribe(() => {
-      if (this.authService.getProposerLocal()) {
-        this.loadProposer();
-      }
-    });
   }
 
   validateNumber(control: AbstractControl): ValidationErrors | null {

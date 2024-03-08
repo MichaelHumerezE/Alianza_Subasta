@@ -24,7 +24,7 @@ export const routes: Routes = [
   { path: 'auction/category/:category', component: AuctionComponent },
   { path: 'auction/state/:state', component: AuctionComponent },
   { path: 'auction/:id_auction/detail', component: DetailAuctionComponent },
-  { path: 'auction/proposer', component: ParticipatedAuctionsComponent },
+  { path: 'auction/proposer', component: ParticipatedAuctionsComponent, canActivate: [authGuard] },
   { path: 'notification', component: NotificationComponent },
   { path: 'notification/:id_notification/detail', component: DetailNotificationComponent },
   { path: '**', component: HomeComponent },

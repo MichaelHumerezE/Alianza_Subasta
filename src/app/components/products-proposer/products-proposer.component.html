@@ -6,7 +6,7 @@
         <h4 class="shop_cart_title sopcart_ttl d-none d-lg-flex">
           <span>Producto</span>
           <span>Estado</span>
-          <span>Última Puja</span>
+          <span>Última Oferta</span>
         </h4>
         <div class="shop_cart_wrap">
           @for (product of products; track $index) {
@@ -38,7 +38,7 @@
               -->
             </div>
             <div class="cart_price ms-auto">
-              <p>{{ product.current_bid }} Bs</p>
+              <p>{{ product.base_price }} Bs</p>
             </div>
             <!--
             <div class="cart_remove ms-auto">

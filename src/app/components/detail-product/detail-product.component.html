@@ -54,10 +54,12 @@
               <p><span>Fecha de Finalización:</span>{{ product?.end_date }}</p>
             </div>
             <div class="price mt-3 mb-3 d-flex align-items-center">
+              <!--
               @if (product?.current_bid != product?.base_price) {
               <span class="prev_price ms-0">{{ product?.base_price }} Bs</span>
               }
-              <span class="org_price ms-2">{{ product?.current_bid }} Bs</span>
+              -->
+              <span class="org_price ms-2">{{ product?.base_price }} Bs</span>
               <div class="disc_tag ms-3">
                 @if (product) {
                 <app-countdown-timer
@@ -128,7 +130,7 @@
                         -->
             <div class="cart_qnty ms-md-auto">
               <div class="product_other_info">
-                <p><span> Ingresar Puja: </span></p>
+                <p><span> Ingresar Oferta: </span></p>
               </div>
               <div class="d-flex align-items-center">
                 <form [formGroup]="offerForm">
@@ -174,7 +176,7 @@
               (click)="sendOffer()"
               class="default_btn small rounded me-sm-3 me-2 px-4"
             >
-              <i class="fa fa-gavel"></i> Enviar Puja
+              <i class="fa fa-gavel"></i> Enviar Oferta
             </button>
             <!--
                         <a href="#" class="default_btn small rounded second border-none"><i class="icon-heart me-2"></i>
@@ -195,7 +197,7 @@
           Información del Producto
         </div>
         <div class="pbt_single_btn" data-target=".qna">
-          Top 10 Pujas - Proponentes
+          Tus Ofertas
         </div>
         <div class="pbt_single_btn" data-target=".review">Otros...</div>
       </div>

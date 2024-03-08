@@ -18,7 +18,6 @@ import { OfferService } from '../../services/offer.service';
 import { AuthService } from '../../services/auth.service';
 import { AttributesComponent } from '../attributes/attributes.component';
 import { CountdownTimerComponent } from '../countdown-timer/countdown-timer.component';
-import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-detail-product',
@@ -67,10 +66,6 @@ export class DetailProductComponent {
       this.id_auction = params['id_auction'];
       this.loadProduct();
     });
-
-    interval(5000).subscribe(() => {
-      this.loadProduct();
-    });
   }
 
   loadProduct() {
@@ -81,7 +76,7 @@ export class DetailProductComponent {
         console.log('Respuesta de la API - GetProductById: ', productData);
         this.product = productData;
         this.minimum_bid =
-          Number(this.product.current_bid) +
+          Number(this.product.base_price) +
           Number(this.product.minimum_increase);
       },
       error: (errorData) => {
@@ -94,7 +89,7 @@ export class DetailProductComponent {
     if (
       Number(this.offerForm.get('proposer_offer')?.value) >= this.minimum_bid!
     ) {
-      if (this.verifyStateProduct() && this.verifyStateProposer()) {
+      if (this.verifyStateProduct() && this.verifyAuth() && this.verifyStateProposer()) {
         const formData = this.loadFormData();
         this.offerService.registerOffer(formData).subscribe({
           next: (attributesData) => {
@@ -134,7 +129,18 @@ export class DetailProductComponent {
   verifyStateProposer(): boolean {
     if (this.authService?.getProposerLocal().verify != 1) {
       this.message.title = '¡No Permitido!';
-      this.message.text = 'Su cuenta no esta disponible para enviar pujas a las subastas, ir a su perfil y verificar su estado';
+      this.message.text = 'Su cuenta no esta disponible para enviar ofertas a las subastas, ir a su perfil y verificar su estado';
+      this.message.icon = 'warning';
+      this.alert.viewMessage(this.message);
+      return false;
+    }
+    return true;
+  }
+
+  verifyAuth(): boolean {
+    if (!this.authService.getProposerLocal()) {
+      this.message.title = '¡No Permitido!';
+      this.message.text = 'Debe iniciar sesion para registrar una oferta';
       this.message.icon = 'warning';
       this.alert.viewMessage(this.message);
       return false;

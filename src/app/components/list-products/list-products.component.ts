@@ -52,10 +52,6 @@ export class ListProductsComponent {
     this.readParams();
     this.loadProducts();
     this.loadCategories();
-
-    /*interval(10000).subscribe(() => {
-      this.loadProducts();
-    });*/
   }
 
   loadProducts(){

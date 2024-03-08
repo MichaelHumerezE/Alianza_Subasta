@@ -38,10 +38,12 @@
               <h4>{{ product.category }}</h4>
             </div>
             <div class="price">
-              <span class="org_price">{{ product.current_bid }} Bs.</span>
+              <span class="org_price">{{ product.base_price }} Bs.</span>
+              <!--
               @if(product.base_price != product.current_bid){
               <span class="prev_price">{{ product.base_price }} Bs.</span>
               }
+              -->
             </div>
             <div class="rating">
               <div class="d-flex align-items-center justify-content-start">
